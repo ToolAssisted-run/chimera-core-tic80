@@ -127,7 +127,7 @@ jobs:
           bash ./waterbox/run-gate.sh > gate.out 2>&1 || rc=$?
           cat gate.out
           [ "$rc" -eq 0 ]
-          for t in source:patched package:fresh package:controls tic:runs tic:gamepads tic:keys tic:four-keys \
+          for t in source:patched package:fresh package:controls package:key-names tic:runs tic:gamepads tic:keys tic:four-keys \
                    tic:mouse-buttons tic:mouse-place tic:mouse-move tic:scroll tic:clock tic:lag tic:sound tic:save-data \
                    tic:picture tic:sandbox tic:presses-change-the-run tic:state-every-frame tic:state-other-box tic:state-rewind \
                    lang:lua lang:moon lang:fennel lang:yue lang:js lang:squirrel lang:scheme lang:wren lang:wasm lang:janet \

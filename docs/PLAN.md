@@ -129,3 +129,17 @@ the address space laid out at random.
 layout) when the machine has it. Measured: a fresh clone and the working
 tree make the same `core.wbx`, byte for byte, and the Forth demo gives the
 same results as before.
+
+## 2026-10-14: the default bindings name keys Chimera has
+
+**Found.** 16 of the keys the package binds by default had names Chimera
+does not give its keys: the digits ("0" for "Number0"), "Grave",
+"LeftControl", "Return", "KeypadPlus", "KeypadMinus" and "KeypadPeriod".
+Those controls shipped unbound. The window test checked only that Chimera
+takes the package's bindings, not that the keys exist.
+
+**Decided.** The names are Chimera's (its DistinctKey list and the names
+DistinctKeyNameOverrides gives some keys), and a new test,
+`package:key-names` (`tests/check-key-names.py`), reads that list from
+Chimera's source and checks every binding against it. Measured: the old
+bindings fail it with those 16 keys, the new ones pass.

@@ -39,7 +39,8 @@ design log, with what was decided, why, and what was measured.
   (configures the sandbox build), `build-package.sh`, `run-gate.sh` (the
   test script).
 - `tests/` - `make-tic80-cart.py` (writes the test cart), `extract-demo.py`
-  (writes one of TIC-80's built-in carts as a .tic), `run-frontend.sh` (the
+  (writes one of TIC-80's built-in carts as a .tic), `check-key-names.py`
+  (the default bindings name keys Chimera knows), `run-frontend.sh` (the
   window test, with its helpers), `make-project.py` (writes a project).
 - `build/` - every build output, ignored by git.
 
@@ -78,7 +79,8 @@ purpose once and seen to fail.
   memory; Export Save Data writes it, and the save data slot gives it back.
 - **The controls are in two places that must agree**: the tables in
   `cinterface.c` and the `input` in `waterbox.config`. The test
-  `package:controls` compares them.
+  `package:controls` compares them; `package:key-names` checks that the
+  default bindings name keys Chimera knows.
 - **Only what TIC-80's free build loads.** `.tic` and `.png` carts. Text
   carts (`.lua` and the like) are a feature of TIC-80 PRO, which its author
   sells; the core does not load them.
