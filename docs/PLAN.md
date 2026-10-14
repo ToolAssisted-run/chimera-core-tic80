@@ -100,3 +100,32 @@ projects of 600 frames - the test cart with gamepad, key and mouse presses
 and a Starting Clock of its own, and the Python, JavaScript and Scheme demos
 with the figure moved - to the same memory as on Linux. Chimera's window was
 tried on Linux only. Not tried: any cart from tic80.com.
+
+## 2026-10-14: pForth's dictionary is made by the build
+
+**Found.** A fresh clone did not build: `pfdicdat.h`, pForth's dictionary
+as a C header, is not in pForth's repository. Upstream's CMake writes it
+into pForth's source folder when it configures, and the working tree here
+had it only because upstream's CMake had been run there to read its file
+lists.
+
+**Decided.** `waterbox/make-pforth-dic.sh` makes it, as upstream's CMake
+does, on a copy of pForth's folder, and the build uses it. It loads
+`system.fth` by a relative name where upstream's CMake gives the absolute
+path, which pForth records in the dictionary: upstream's header carried the
+folder it was built in, this one carries no path. Measured: the Forth demo
+gives the same results as before (`lang:forth`), and a fresh clone builds.
+
+## 2026-10-14: the same commit makes the same package
+
+**Found.** Two builds of the same commit, in two folders, made different
+`core.wbx` files: pForth and MiniScript print the day and time they were
+compiled (`__DATE__`, `__TIME__`), and pForth's dictionary holds four
+addresses of the program that wrote it, which differ from run to run with
+the address space laid out at random.
+
+**Decided.** Both macros are fixed for the whole build (`meson.build`), and
+`waterbox/make-pforth-dic.sh` runs pForth with `setarch -R` (no random
+layout) when the machine has it. Measured: a fresh clone and the working
+tree make the same `core.wbx`, byte for byte, and the Forth demo gives the
+same results as before.

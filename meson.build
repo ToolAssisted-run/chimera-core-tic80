@@ -38,6 +38,9 @@ endif
 # one answer from a floating-point expression on every machine: no fused
 # multiply-adds; signed overflow wraps, as the script engines expect
 common = ['-DCHIMERA_CORE', '-Dd_m3LogOutput=0', '-DNDEBUG', '-fwrapv', '-fno-strict-aliasing', '-ffp-contract=off']
+# pForth and MiniScript write the day and time they were compiled into what they
+# print; fixed, so that the same commit makes the same package
+common += ['-Wno-builtin-macro-redefined', '-D__DATE__="Jan  1 2000"', '-D__TIME__="00:00:00"']
 add_project_arguments(common, language: ['c', 'cpp'])
 
 # what each language's part of TIC-80 is compiled with (upstream's CMake)
@@ -250,7 +253,13 @@ foreach n : ['pf_cglue.c', 'pf_clib.c', 'pf_core.c', 'pf_inner.c', 'pf_io.c', 'p
              'paging/qadmpage.c']
   pf_src += v / 'pforth/csrc' / n
 endforeach
-libs += static_library('forth', files(pf_src) + files(t / 'src/api/forth.c'),
+# pForth's dictionary, pfdicdat.h, is written by pForth itself
+# (waterbox/make-pforth-dic.sh), as upstream's CMake does at configure time
+pfdicdat = custom_target('pfdicdat.h',
+  output: 'pfdicdat.h',
+  command: [files('waterbox/make-pforth-dic.sh'), meson.current_source_dir() / v / 'pforth', '@OUTPUT@',
+            meson.current_build_dir() / 'pforth-work'])
+libs += static_library('forth', files(pf_src) + files(t / 'src/api/forth.c') + [pfdicdat],
   c_args: tic + ['-DPF_DEMAND_PAGING=0', '-DPF_NO_FILEIO', '-DPF_STATIC_DIC', '-DPF_SUPPORT_FP'],
   include_directories: [include_directories(v / 'pforth/csrc'), def_inc])
 

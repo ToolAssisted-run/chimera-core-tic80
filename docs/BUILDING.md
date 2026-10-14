@@ -31,7 +31,7 @@ Upstream builds with CMake. `meson.build` lists what that CMake compiles for
 the machine and for each language, with the include folders and definitions
 it gives each, as it was read from upstream's own configuration
 (`-DBUILD_SDL=OFF -DBUILD_LIBRETRO=ON -DBUILD_STATIC=ON -DBUILD_WITH_ALL=ON`,
-its `compile_commands.json`). Three files upstream's CMake writes are made
+its `compile_commands.json`). Four files upstream's CMake writes are made
 here instead:
 
 - `version.h`, from `extern/tic80/version.h.in` with the version written in
@@ -39,7 +39,12 @@ here instead:
 - `pnglibconf.h`, copied from libpng's prebuilt one, as upstream does;
 - `janet.c`, Janet's one-file source, which Janet's own Makefile writes by
   building a small Janet first (`waterbox/make-janet.sh`, on a copy of
-  Janet's folder, with the build machine's compiler).
+  Janet's folder, with the build machine's compiler);
+- `pfdicdat.h`, pForth's dictionary, which pForth writes once it is built
+  with the build machine's compiler and has loaded its system words
+  (`waterbox/make-pforth-dic.sh`, on a copy of pForth's folder). Upstream's
+  CMake writes it into pForth's own folder; a header left there by such a
+  build would be taken before this one, so the folder must not have it.
 
 Moving the submodule to another commit means reading upstream's CMake again
 for new or removed files, and the version in `meson.build`.
