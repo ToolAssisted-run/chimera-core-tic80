@@ -1,0 +1,144 @@
+{
+  "package": "tic80",
+  "effectiveTerms": "MIT, with blip_buf under the LGPL-2.1-or-later",
+  "commercialUse": "allowed",
+  "note": "The core is TIC-80 (MIT) with this repository's integration (MIT), and the programming languages TIC-80 carries in its source, each under its own permissive licence (THIRD_PARTY_LICENSES.md in TIC-80's tree lists them). TIC-80's sound uses blip_buf, under the GNU Lesser General Public License 2.1 or later; its source is in TIC-80's repository, and this repository builds the package from public sources only. The package contains no cart of anyone's.",
+  "components": [
+    {
+      "name": "chimera-core-tic80 (integration)",
+      "license": "MIT",
+      "url": "https://github.com/ToolAssisted-run/chimera-core-tic80",
+      "commit": "{selfCommit}",
+      "file": "LICENSE",
+      "sourceUrl": "https://github.com/ToolAssisted-run/chimera-core-tic80/archive/{commit}.tar.gz"
+    },
+    {
+      "name": "TIC-80",
+      "license": "MIT",
+      "url": "https://github.com/nesbox/TIC-80",
+      "commit": "{submodule:extern/tic80}",
+      "file": "extern/tic80/LICENSE",
+      "sourceUrl": "https://github.com/nesbox/TIC-80/archive/{commit}.tar.gz"
+    },
+    {
+      "name": "blip_buf (in TIC-80)",
+      "license": "LGPL-2.1-or-later",
+      "url": "https://github.com/nesbox/blip-buf",
+      "file": "extern/tic80/vendor/blip-buf/license.txt"
+    },
+    {
+      "name": "Lua (in TIC-80)",
+      "license": "MIT",
+      "url": "https://github.com/lua/lua",
+      "file": "extern/tic80/vendor/lua/lua.h"
+    },
+    {
+      "name": "LPeg (in TIC-80)",
+      "license": "MIT",
+      "url": "https://github.com/roberto-ieru/LPeg",
+      "file": "extern/tic80/LICENSES/MIT.txt"
+    },
+    {
+      "name": "MoonScript (in TIC-80)",
+      "license": "MIT",
+      "url": "https://github.com/nesbox/moonscript",
+      "file": "extern/tic80/vendor/moonscript/LICENSE"
+    },
+    {
+      "name": "Fennel (in TIC-80)",
+      "license": "MIT",
+      "url": "https://git.sr.ht/~technomancy/fennel",
+      "file": "extern/tic80/LICENSES/MIT.txt"
+    },
+    {
+      "name": "YueScript (in TIC-80)",
+      "license": "MIT",
+      "url": "https://github.com/pigpigyyy/Yuescript",
+      "file": "extern/tic80/vendor/yuescript/LICENSE"
+    },
+    {
+      "name": "QuickJS-ng (in TIC-80)",
+      "license": "MIT",
+      "url": "https://github.com/quickjs-ng/quickjs",
+      "file": "extern/tic80/vendor/quickjs/LICENSE"
+    },
+    {
+      "name": "Squirrel (in TIC-80)",
+      "license": "MIT",
+      "url": "http://squirrel-lang.org",
+      "file": "extern/tic80/vendor/squirrel/COPYRIGHT"
+    },
+    {
+      "name": "s7 (in TIC-80)",
+      "license": "0BSD",
+      "url": "https://ccrma.stanford.edu/software/s7/",
+      "file": "extern/tic80/LICENSES/0BSD.txt"
+    },
+    {
+      "name": "Wren (in TIC-80)",
+      "license": "MIT",
+      "url": "https://github.com/wren-lang/wren",
+      "file": "extern/tic80/vendor/wren/LICENSE"
+    },
+    {
+      "name": "Wasm3 (in TIC-80)",
+      "license": "MIT",
+      "url": "https://github.com/wasm3/wasm3",
+      "file": "extern/tic80/vendor/wasm3/LICENSE"
+    },
+    {
+      "name": "Janet (in TIC-80)",
+      "license": "MIT",
+      "url": "https://github.com/janet-lang/janet",
+      "file": "extern/tic80/vendor/janet/LICENSE"
+    },
+    {
+      "name": "pocketpy (in TIC-80)",
+      "license": "MIT",
+      "url": "https://github.com/pocketpy/pocketpy",
+      "file": "extern/tic80/vendor/pocketpy/LICENSE"
+    },
+    {
+      "name": "MiniScript 2 (in TIC-80)",
+      "license": "MIT",
+      "url": "https://github.com/JoeStrout/miniscript2",
+      "file": "extern/tic80/vendor/miniscript2/LICENSE"
+    },
+    {
+      "name": "pForth (in TIC-80)",
+      "license": "0BSD",
+      "url": "https://github.com/philburk/pforth",
+      "file": "extern/tic80/vendor/pforth/license.txt"
+    },
+    {
+      "name": "zlib (in TIC-80)",
+      "license": "Zlib",
+      "url": "https://github.com/madler/zlib",
+      "file": "extern/tic80/vendor/zlib/LICENSE"
+    },
+    {
+      "name": "libpng (in TIC-80)",
+      "license": "libpng-2.0",
+      "url": "https://github.com/pnggroup/libpng",
+      "file": "extern/tic80/vendor/libpng/LICENSE"
+    },
+    {
+      "name": "GIFLIB (in TIC-80)",
+      "license": "MIT",
+      "url": "https://github.com/nesbox/giflib",
+      "file": "extern/tic80/vendor/giflib/COPYING"
+    },
+    {
+      "name": "KISS FFT (in TIC-80)",
+      "license": "BSD-3-Clause",
+      "url": "https://github.com/mborgerding/kissfft",
+      "file": "extern/tic80/LICENSES/BSD-3-Clause.txt"
+    },
+    {
+      "name": "zip (in TIC-80)",
+      "license": "MIT",
+      "url": "https://github.com/kuba--/zip",
+      "file": "extern/tic80/LICENSES/MIT.txt"
+    }
+  ]
+}

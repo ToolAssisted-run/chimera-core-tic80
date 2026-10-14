@@ -1,0 +1,3 @@
+[submodule "extern/tic80"]
+	path = extern/tic80
+	url = https://github.com/nesbox/TIC-80.git
