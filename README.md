@@ -14,8 +14,9 @@ New, and not published yet.
   Fennel, YueScript, JavaScript, Squirrel, Scheme, Wren, WebAssembly, Janet,
   Python, MiniScript and Forth. TIC-80's demo cart of each runs, and the
   sandboxed core gives the same results as a plain native build.
-- Tried: those demo carts and the core's own test cart. No game from
-  tic80.com has been tried yet.
+- Tried: those demo carts and the core's own test cart, on Linux and, in
+  Chimera's headless runner, on Windows (the same memory on both). No game
+  from tic80.com has been tried yet.
 - Not there: Ruby (its build needs Ruby's own tools), and TIC-80's editors,
   console and game browser: the core is the machine that runs a cart.
 

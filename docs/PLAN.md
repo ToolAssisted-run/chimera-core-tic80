@@ -95,4 +95,8 @@ after 300 frames, 400 after 100 more from the exported file
 cart were looked at as pictures: Sweetie 16's colours, the border, the
 arrow cursor at the mouse's place. Chimera's window plays the test cart and
 the Lua demo to the headless runner's memory (`tests/run-frontend.sh`, 3/0).
-Not tried: any cart from tic80.com, and Windows.
+On Windows, Chimera's headless runner (`chimera-run.exe`) plays four
+projects of 600 frames - the test cart with gamepad, key and mouse presses
+and a Starting Clock of its own, and the Python, JavaScript and Scheme demos
+with the figure moved - to the same memory as on Linux. Chimera's window was
+tried on Linux only. Not tried: any cart from tic80.com.
