@@ -161,3 +161,10 @@ names from Chimera's source and checks every binding.
 Measured: after the fix above, Key Ctrl, Key Shift and Key Alt were still on
 LeftCtrl, LeftShift and LeftAlt, which a default setup never sends; they are
 now on Ctrl, Shift and Alt.
+
+**Changed the same day.** A modifier is bound under both names: the merged
+one, which a default setup sends, and the side's own ("Shift, LeftShift";
+the right key on "RightShift"), which fires when the merging is turned off,
+as other cores already do. `package:key-names` accepts a left or right name
+only when the merged one is bound too. Checked on Xvfb: with 1, Return, left
+Shift and Up held, Chimera's window reports Number1, Enter, Shift and Up.
