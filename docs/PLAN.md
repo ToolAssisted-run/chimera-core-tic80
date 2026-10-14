@@ -143,3 +143,21 @@ DistinctKeyNameOverrides gives some keys), and a new test,
 `package:key-names` (`tests/check-key-names.py`), reads that list from
 Chimera's source and checks every binding against it. Measured: the old
 bindings fail it with those 16 keys, the new ones pass.
+
+## 2026-10-14: the modifier keys too
+
+**Found.** Chimera hands a key to the bindings under one name only: the
+name DistinctKeyNameOverrides gives it ("Number1", "Enter", "Backtick",
+"KeypadAdd"), or else its DistinctKey name (Input.cs). By default it also
+reads the left and right Shift, Ctrl and Alt as one key each, "Shift",
+"Ctrl" and "Alt" (Config.MergeLAndRModifierKeys). A binding to any other
+name never fires, so those controls shipped unbound.
+
+**Decided.** The bindings use those names; where both keys of a modifier
+were bound, the left one is on the merged key and the right one ships
+unbound. The test `package:key-names` (`tests/check-key-names.py`) reads the
+names from Chimera's source and checks every binding.
+
+Measured: after the fix above, Key Ctrl, Key Shift and Key Alt were still on
+LeftCtrl, LeftShift and LeftAlt, which a default setup never sends; they are
+now on Ctrl, Shift and Alt.
