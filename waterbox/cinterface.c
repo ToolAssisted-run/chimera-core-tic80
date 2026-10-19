@@ -26,6 +26,7 @@
 #include "cart.h"
 #include "script.h"
 #include "tools.h"
+#include "core/core.h"
 
 /* ---- what went wrong, for Chimera to show -------------------------------- */
 static char g_loadError[512];
@@ -226,14 +227,28 @@ static void load_system_cart(void)
 	free(data);
 }
 
+/* The cursor is the first video bank's, whichever bank the frame ended on.
+ * TIC-80 keeps a cursor in each bank's memory and its player draws the one
+ * of the bank that happens to be active; a cart that draws two layers can
+ * end every other frame on the second, whose cursor is another or none,
+ * and the cursor then showed on every other frame (Hollow Knight Demake,
+ * chimera#318). TIC-80 itself treats the cursor as one for both banks when
+ * it switches for OVR. Nothing here is the machine's: it is the picture. */
+static const tic_vram *first_bank(void)
+{
+	tic_core *core = (tic_core *)g_mem;
+	return core->state.vbank.id ? &core->state.vbank.mem : &g_mem->ram->vram;
+}
+
 static void draw_cursor(void)
 {
 	tic80_mouse *m = &g_mem->ram->input.mouse;
 	if (!g_drawCursor || !g_mem->input.mouse || m->relative || (s32)m->y >= TIC80_FULLHEIGHT) return;
-	s32 sprite = clampi(g_mem->ram->vram.vars.cursor.sprite, 0, TIC_BANK_SPRITES - 1);
+	const tic_vram *v = first_bank();
+	s32 sprite = clampi(v->vars.cursor.sprite, 0, TIC_BANK_SPRITES - 1);
 	const tic_bank *bank = &g_mem->cart.bank0;
 	tic_point hot = { 0, 0 };
-	if (g_mem->ram->vram.vars.cursor.system)
+	if (v->vars.cursor.system)
 	{
 		if (!g_systemCart) return;
 		bank = &g_systemCart->bank0;

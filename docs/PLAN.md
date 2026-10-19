@@ -168,3 +168,25 @@ the right key on "RightShift"), which fires when the merging is turned off,
 as other cores already do. `package:key-names` accepts a left or right name
 only when the merged one is bound too. Checked on Xvfb: with 1, Return, left
 Shift and Up held, Chimera's window reports Number1, Enter, Shift and Up.
+
+## The cursor is the first video bank's (chimera#318, 2026-10-20)
+
+Hollow Knight Demake's mouse cursor showed on every other frame once Capture
+Mouse hid Windows' own arrow. TIC-80 keeps the cursor in each video bank's
+memory ($3FFB), and the core drew the one of the bank the frame ended on.
+That cart draws two layers, background and foreground, in an order that
+alternates frame by frame, so it ends every other frame on its second bank,
+whose cursor byte is 0 (no cursor): measured at $3FFB, 0x80 (the system
+arrow) on one frame and 0x00 on the next. TIC-80's own player reads the
+active bank the same way; TIC-80 itself treats the cursor as one for both
+banks when it switches for OVR.
+
+The core now draws the first bank's cursor whichever bank is active. It is
+the picture only: nothing of the machine changes, so no movie does.
+
+Test: the test cart has a "banks" variant that clears its second bank's
+cursor and ends every other frame on that bank; tic:cursor-banks holds that
+each of 40 pictures differs from the same frame with Mouse Cursor 'hide'. On
+the published core 20 of the 40 had no cursor. Hollow Knight Demake in play
+(chimera-run, frames 1200 to 1207, the mouse still) has the arrow on every
+frame.

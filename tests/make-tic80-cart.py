@@ -3,7 +3,7 @@
 the clock and the save memory for the TIC-80 core's tests. It needs no file
 of anyone's.
 
-usage: make-tic80-cart.py <out.tic> [nopad | relative | error]
+usage: make-tic80-cart.py <out.tic> [nopad | relative | error | banks]
 
 The cart is in Lua. Every frame it:
   - counts its frames in the long word at $8000 (the map's memory, which it
@@ -21,7 +21,9 @@ The cart is in Lua. Every frame it:
 With "nopad" it reads no control, so every frame is a lag frame. With
 "relative" it asks for the mouse's movement instead of its place (TIC-80's
 relative mode: bit 7 of $FF87). With "error" its code stops with an error
-on the first frame.
+on the first frame. With "banks" it clears the second video bank's cursor
+($3FFB) and ends every other frame with that bank active, as a cart that
+draws two layers may (Hollow Knight Demake, chimera#318).
 """
 import struct
 import sys
@@ -60,6 +62,11 @@ def program(variant):
         start = "  poke(0x7FC3F, 1, 1)\n"
     if variant == "error":
         start = "  error('the test cart stops here')\n"
+    banks = ""
+    if variant == "banks":
+        # the second bank's cursor byte cleared ($3FFB: no cursor), as a cart
+        # that keeps a layer there may leave it
+        banks = "  vbank(1) poke(0x3FFB, 0) vbank(n % 2)\n"
     return """-- title:  chimera test
 -- author: chimera-core-tic80
 -- script: lua
@@ -85,8 +92,8 @@ function TIC()
   local f = 220 + ((n // 30) %% 4) * 55
   poke(0xFF9C, f & 255) poke(0xFF9D, ((f >> 8) & 15) | (10 << 4))
   for i = 0, 15 do poke(0xFF9E + i, i < 8 and 0 or 255) end
-end
-""" % (start, reads)
+%send
+""" % (start, reads, banks)
 
 
 def main():

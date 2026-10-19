@@ -108,7 +108,7 @@ check "package:fresh" "core.wbx is not older than its sources${stale:+ (older th
 
 # ------------------------------------------------- the test cart
 mkdir -p "$work/carts"
-for v in "" nopad relative error; do
+for v in "" nopad relative error banks; do
 	python3 "$root/tests/make-tic80-cart.py" "$work/carts/test${v:+-$v}.tic" $v > /dev/null
 done
 folder t '{}' "$work/carts/test.tic"
@@ -233,6 +233,27 @@ mid = b"".join(f[((y + 4) * fw + 8) * 4:((y + 4) * fw + 8 + 240) * 4] for y in r
 ram = lambda p: [l.split()[3] for l in open(p) if l.startswith("frame")]
 ok = (fw, fh, sw, sh) == (256, 144, 240, 136) and mid == s and hidden != f and ram(sys.argv[4]) and ram(sys.argv[4]) == ram(sys.argv[5])
 sys.exit(0 if ok else 1)
+PY
+
+# The cursor on a cart that ends every other frame on its second video bank,
+# whose cursor it cleared: the cursor is the first bank's, on every frame.
+# It showed on every other frame (Hollow Knight Demake, chimera#318).
+folder bk '{}' "$work/carts/test-banks.tic"
+folder bkh '{"mouseCursor":"hide"}' "$work/carts/test-banks.tic"
+nat bk bk --frames 40 --report 1
+nat bkh bkh --frames 40 --report 1
+check "tic:cursor-banks" "on a cart that ends every other frame on its second video bank, the cursor is drawn on every frame: each of 40 pictures differs from the same frame with Mouse Cursor 'hide'" \
+	python3 - "$work/bk.out" "$work/bkh.out" <<'PY'
+import sys
+def vids(p):
+    out = []
+    for l in open(p):
+        t = l.split()
+        if t and t[0] == "frame" and "vid" in t:
+            out.append(t[t.index("vid") + 2])
+    return out
+a, b = vids(sys.argv[1]), vids(sys.argv[2])
+sys.exit(0 if len(a) == 40 and len(b) == 40 and all(x != y for x, y in zip(a, b)) else 1)
 PY
 
 # ------------------------------------------------- native and sandbox, states
