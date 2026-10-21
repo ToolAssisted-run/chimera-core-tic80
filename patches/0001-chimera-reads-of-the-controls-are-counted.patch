@@ -1,5 +1,5 @@
 diff --git a/src/core/core.c b/src/core/core.c
-index fa7cbbc5..4dfc198d 100644
+index fa7cbbc5..3bae5f0d 100644
 --- a/src/core/core.c
 +++ b/src/core/core.c
 @@ -32,6 +32,9 @@
@@ -19,11 +19,11 @@ index fa7cbbc5..4dfc198d 100644
 +#ifdef CHIMERA_CORE
 +    /* a read of the controls' bytes is a look at the controls (io.c) */
 +    {
-+        extern int chimera_input_reads;
++        extern void chimera_input_read(void);
 +        s32 shift = bits == 1 ? 3 : bits == 2 ? 2 : bits == 4 ? 1 : 0;
 +        s32 byte = address >> shift;
 +        if(byte >= (s32)offsetof(tic_ram, input) && byte < (s32)(offsetof(tic_ram, input) + sizeof(tic80_input)))
-+            chimera_input_reads++;
++            chimera_input_read();
 +    }
 +#endif
 +
@@ -37,9 +37,9 @@ index fa7cbbc5..4dfc198d 100644
 +#ifdef CHIMERA_CORE
 +    /* a copy out of the controls' bytes is a look at the controls (io.c) */
 +    {
-+        extern int chimera_input_reads;
++        extern void chimera_input_read(void);
 +        if(size > 0 && src < (s32)(offsetof(tic_ram, input) + sizeof(tic80_input)) && src + size > (s32)offsetof(tic_ram, input))
-+            chimera_input_reads++;
++            chimera_input_read();
 +    }
 +#endif
 +
@@ -47,19 +47,20 @@ index fa7cbbc5..4dfc198d 100644
      {
          u8* base = (u8*)memory->ram;
 diff --git a/src/core/io.c b/src/core/io.c
-index 3463dec6..ec1cb8f8 100644
+index 3463dec6..6207f7f8 100644
 --- a/src/core/io.c
 +++ b/src/core/io.c
-@@ -40,8 +40,19 @@ static bool isKeyPressed(const tic80_keyboard* input, tic_key key)
+@@ -40,8 +40,20 @@ static bool isKeyPressed(const tic80_keyboard* input, tic_key key)
      return false;
  }
  
 +#ifdef CHIMERA_CORE
-+/* Chimera counts the frames in which the cart looked at the controls (a
-+ * frame with no look is a lag frame): every function that answers about
-+ * them adds one here. */
-+int chimera_input_reads;
-+#define CHIMERA_INPUT_READ() (chimera_input_reads++)
++/* Chimera is told of each look the cart takes at the controls: it counts
++ * the frames with none as lag frames, and runs a Lua script's
++ * event.oninputpoll at each one. Every function that answers about them
++ * calls it. */
++void chimera_input_read(void);
++#define CHIMERA_INPUT_READ() chimera_input_read()
 +#else
 +#define CHIMERA_INPUT_READ() ((void)0)
 +#endif
@@ -70,7 +71,7 @@ index 3463dec6..ec1cb8f8 100644
      tic_core* core = (tic_core*)tic;
  
      if(index < 0)
-@@ -64,6 +75,7 @@ u32 tic_api_btnp(tic_mem* tic, s32 index, s32 hold, s32 period)
+@@ -64,6 +76,7 @@ u32 tic_api_btnp(tic_mem* tic, s32 index, s32 hold, s32 period)
  
  u32 tic_api_btn(tic_mem* tic, s32 index)
  {
@@ -78,7 +79,7 @@ index 3463dec6..ec1cb8f8 100644
      tic_core* core = (tic_core*)tic;
  
      if(index < 0)
-@@ -78,6 +90,7 @@ u32 tic_api_btn(tic_mem* tic, s32 index)
+@@ -78,6 +91,7 @@ u32 tic_api_btn(tic_mem* tic, s32 index)
  
  bool tic_api_key(tic_mem* tic, tic_key key)
  {
@@ -86,7 +87,7 @@ index 3463dec6..ec1cb8f8 100644
      return key > tic_key_unknown
                 ? isKeyPressed(&tic->ram->input.keyboard, key)
                 : tic->ram->input.keyboard.data;
-@@ -85,6 +98,7 @@ bool tic_api_key(tic_mem* tic, tic_key key)
+@@ -85,6 +99,7 @@ bool tic_api_key(tic_mem* tic, tic_key key)
  
  bool tic_api_keyp(tic_mem* tic, tic_key key, s32 hold, s32 period)
  {
@@ -94,7 +95,7 @@ index 3463dec6..ec1cb8f8 100644
      tic_core* core = (tic_core*)tic;
  
      if(key > tic_key_unknown)
-@@ -127,6 +141,7 @@ bool tic_api_keyp(tic_mem* tic, tic_key key, s32 hold, s32 period)
+@@ -127,6 +142,7 @@ bool tic_api_keyp(tic_mem* tic, tic_key key, s32 hold, s32 period)
  
  tic_point tic_api_mouse(tic_mem* memory)
  {
@@ -102,20 +103,21 @@ index 3463dec6..ec1cb8f8 100644
      return memory->ram->input.mouse.relative
                 ? (tic_point){memory->ram->input.mouse.rx, memory->ram->input.mouse.ry}
                 : (tic_point){memory->ram->input.mouse.x - TIC80_OFFSET_LEFT, memory->ram->input.mouse.y - TIC80_OFFSET_TOP};
-@@ -137,10 +152,17 @@ void tic_core_tick_io(tic_mem* tic)
+@@ -137,10 +153,18 @@ void tic_core_tick_io(tic_mem* tic)
      tic_core* core = (tic_core*)tic;
  
      // process gamepads mapping
 +#ifdef CHIMERA_CORE
 +    /* the machine's own look at the keys, for the mapping, is not the cart's */
-+    int chimera_reads_before = chimera_input_reads;
++    extern int chimera_input_quiet;
++    chimera_input_quiet++;
 +#endif
      u8* keycodes = tic->ram->mapping.data;
      for(s32 i = 0; i < (s32)sizeof(tic_mapping); ++i)
          if(keycodes[i] && tic_api_key(tic, keycodes[i]))
              tic->ram->input.gamepads.data |= 1 << i;
 +#ifdef CHIMERA_CORE
-+    chimera_input_reads = chimera_reads_before;
++    chimera_input_quiet--;
 +#endif
  
      // process gamepad

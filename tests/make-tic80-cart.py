@@ -18,7 +18,10 @@ The cart is in Lua. Every frame it:
   - counts its frames in pmem(0), its save memory;
   - clears the screen to a colour that changes with the frame, prints the
     count, and plays a square wave whose pitch changes every 30 frames.
-With "nopad" it reads no control, so every frame is a lag frame. With
+With "nopad" it reads no control, so every frame is a lag frame; it does
+map P1's first button to the Z key (the gamepad mapping at $14E04), so the
+machine itself looks at that key every frame, and that look must not count
+as the cart's. With
 "relative" it asks for the mouse's movement instead of its place (TIC-80's
 relative mode: bit 7 of $FF87). With "error" its code stops with an error
 on the first frame. With "banks" it clears the second video bank's cursor
@@ -55,9 +58,10 @@ def program(variant):
   poke(0x8018, l and 1 or 0) poke(0x8019, m and 1 or 0) poke(0x801A, r and 1 or 0)
   poke(0x801B, sx & 255) poke(0x801C, sy & 255)
 """
+    start = ""
     if variant == "nopad":
         reads = ""
-    start = ""
+        start = "  poke(0x14E04, 26)\n"
     if variant == "relative":
         start = "  poke(0x7FC3F, 1, 1)\n"
     if variant == "error":

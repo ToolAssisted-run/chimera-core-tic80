@@ -105,8 +105,28 @@ enum { kMouseX, kMouseY, kMoveX, kMoveY, kScrollX, kScrollY, kAxes };
 static const char *const kAxisNames[kAxes] = { "Mouse X", "Mouse Y", "Mouse Move X", "Mouse Move Y", "Scroll X", "Scroll Y" };
 static int g_axis[kAxes] = { 32768, 32768, 0, 0, 0, 0 };
 
-extern int chimera_input_reads;   /* core/io.c and core/core.c (patch 0001) */
+static int g_inputReads;
 static int g_inputRead;
+/* above 0 while the machine itself looks at the keys (its gamepad mapping),
+ * which is not the cart reading them (core/io.c, patch 0001) */
+int chimera_input_quiet;
+
+/* Chimera's function to call at each look the cart takes at the controls, so
+ * a Lua script's event.oninputpoll runs there (chimera#344). It is the same
+ * callback slot in every session and no savestate carries it. */
+ECL_INVISIBLE static uintptr_t (*g_inputPoll)(uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t);
+ECL_EXPORT void SetInputPollCallback(uint64_t fn)
+{
+	g_inputPoll = (uintptr_t (*)(uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t, uintptr_t))(uintptr_t)fn;
+}
+
+/* core/io.c and core/core.c call this at each look (patch 0001) */
+void chimera_input_read(void)
+{
+	if (chimera_input_quiet) return;
+	g_inputReads++;
+	if (g_inputPoll) g_inputPoll(0, 0, 0, 0, 0, 0);
+}
 
 static int clampi(int v, int lo, int hi) { return v < lo ? lo : v > hi ? hi : v; }
 
@@ -460,7 +480,7 @@ ECL_EXPORT void FrameAdvance(uint64_t packed)
 {
 	(void)packed;
 	g_audioFrames = 0;
-	chimera_input_reads = 0;
+	g_inputReads = 0;
 	if (!g_exited)
 	{
 		tic80_tick(g_tic, make_input(), tic_counter, tic_freq);
@@ -477,7 +497,7 @@ ECL_EXPORT void FrameAdvance(uint64_t packed)
 		memset(g_audio, 0, (size_t)g_audioFrames * 2 * sizeof(int16_t));
 	}
 	g_frameCount++;
-	g_inputRead = chimera_input_reads > 0;
+	g_inputRead = g_inputReads > 0;
 	if (g_render) take_picture();
 }
 

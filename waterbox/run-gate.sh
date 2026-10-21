@@ -345,8 +345,26 @@ if [ -n "$chimera_root" ] && [ -x "$runner" ] && [ -f "$package" ]; then
 	box eng t --frames 300 --press "$p1a":200:101 --press "$(index t "P3 Down")":150:151 --press "$(index t "Key Q")":100:201 --dump-domain RAM "$work/eng.ram"
 	check "engine:tic" "a project of the test cart with presses plays in Chimera's headless runner to the sandbox runner's memory ($(wc -c < "$work/eng.ram" 2> /dev/null) bytes; the cart read $(hex "$work/engine.ram" 0x8004 4) on its pads, and Q)" \
 		sh -c "cmp -s '$work/engine.ram' '$work/eng.ram' && [ '$(hex "$work/engine.ram" 0x8004 4)' = 10000200 ] && [ '$(hex "$work/engine.ram" 0x800A 1)' = 01 ]"
+	# each look the cart takes at the controls is reported to Chimera as it
+	# happens, so a Lua script's event.oninputpoll runs there (chimera#344):
+	# the test cart looks in every frame, its twin never - the machine's own
+	# look at the keys for its gamepad mapping is not reported - and counting
+	# the looks moves nothing
+	"$runner" --project "$work/proj/test.chimeraProject" "$package" --files "$work/proj" --frames 300 --count-input-polls \
+		--dump "RAM=$work/polls.ram" --meta "$work/polls.meta" > "$work/polls.log" 2>&1
+	mkdir -p "$work/projq"
+	cp "$work/carts/test-nopad.tic" "$work/projq/"
+	python3 "$root/tests/make-project.py" "$package" "$work/projq/q.chimeraProject" 300 -- cart="$work/projq/test-nopad.tic" > /dev/null
+	"$runner" --project "$work/projq/q.chimeraProject" "$package" --files "$work/projq" --frames 300 --count-input-polls \
+		--meta "$work/pollsq.meta" > "$work/pollsq.log" 2>&1
+	polls=$(sed -n 's/^inputPolls=//p' "$work/polls.meta" 2> /dev/null)
+	lags=$(sed -n 's/^lagFrames=//p' "$work/polls.meta" 2> /dev/null)
+	qpolls=$(sed -n 's/^inputPolls=//p' "$work/pollsq.meta" 2> /dev/null)
+	check "engine:input-polls" "the cart's looks at its controls reach Chimera as they happen: ${polls:-none} in 300 frames with ${lags:-?} lag frames; its twin that never looks, ${qpolls:-none}; the memory is the run's without counting" \
+		sh -c "[ '${polls:-none}' != none ] && [ '${polls:-0}' -ge 300 ] && [ '${lags:-}' = 0 ] && [ '${qpolls:-none}' = 0 ] && cmp -s '$work/polls.ram' '$work/engine.ram'"
 else
 	report "engine:tic" SKIP "needs CHIMERA_ROOT with build/dll/chimera-run and build/Cores/tic80.chimeraCore"
+	report "engine:input-polls" SKIP "needs CHIMERA_ROOT with build/dll/chimera-run and build/Cores/tic80.chimeraCore"
 fi
 
 echo
