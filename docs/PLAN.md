@@ -190,3 +190,16 @@ each of 40 pictures differs from the same frame with Mouse Cursor 'hide'. On
 the published core 20 of the 40 had no cursor. Hollow Knight Demake in play
 (chimera-run, frames 1200 to 1207, the mouse still) has the arrow on every
 frame.
+
+## 2026-10-21: the keyboard in rows (chimera#337)
+
+The 94 keys were listed in TIC-80's own code order (A to Z, 0 to 9, then the
+rest). They are now listed as they sit on a keyboard, row by row from the
+top (Escape and the F keys, the number row, the QWERTY row, the home row, the
+Z row, then Ctrl, Alt and Space), then the keys beside the rows, the arrows
+and the keypad: the table `kKeys` in `waterbox/cinterface.c`, which carries
+each key's TIC-80 code, and the package follows it. A cart still sees at most
+four keys at once, and with more held it sees the four with the lowest codes,
+as before, so a project replays as it did. The gate checks each key against
+its code. Measured: gate 41 of 41 (with the core sending list places instead
+of codes, 3 failed); frontend 3 of 3.

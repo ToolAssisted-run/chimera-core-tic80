@@ -162,11 +162,33 @@ PY
 each_bit t 0 32 0x8004 4 "$work/pads.txt"
 check "tic:gamepads" "each of the 32 gamepad buttons (P1 to P4: Up, Down, Left, Right, A, B, X, Y), held alone, is btn() of its own number to the cart and no other" \
 	one_bit "$work/pads.txt" 32
-keyA="$(index t "Key A")"
-each_bit t "$keyA" 94 0x8008 12 "$work/keys.txt"
+# the keys are listed as they sit on the keyboard (chimera#337), from Escape;
+# each is key() of its own code, which is its place in TIC-80's list
+key1="$(index t "Key Escape")"
+each_bit t "$key1" 94 0x8008 12 "$work/keys-listed.txt"
+"$native" "$work/t" --frames 1 --list-panel 2> /dev/null | grep "^panel" > "$work/keys-panel.txt"
+python3 - "$work/keys-listed.txt" "$work/keys-panel.txt" "$key1" > "$work/keys.txt" <<'PY'
+import re, sys
+tic = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
+       "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+       "-", "=", "[", "]", "\\", ";", "'", "`", ",", ".", "/",
+       "Space", "Tab", "Return", "Backspace", "Delete", "Insert", "Page Up", "Page Down", "Home", "End",
+       "Up", "Down", "Left", "Right", "Caps Lock", "Ctrl", "Shift", "Alt",
+       "Escape"] + ["F%d" % i for i in range(1, 13)] + ["Keypad %d" % i for i in range(10)] + [
+       "Keypad +", "Keypad -", "Keypad *", "Keypad /", "Keypad Enter", "Keypad ."]
+names = {}
+for line in open(sys.argv[2]):
+    m = re.match(r"^panel (\d+) '(.*)'", line)
+    if m: names[int(m.group(1))] = m.group(2)
+first = int(sys.argv[3])
+for line in open(sys.argv[1]):
+    c, h = line.split()
+    # the line of the key's code: what one_bit expects
+    print(tic.index(names[first + int(c)][4:]), h)
+PY
 check "tic:keys" "each of the 94 keys, held alone, is key() of its own code to the cart and no other" \
 	one_bit "$work/keys.txt" 94
-nat five t --frames 100 --press $((keyA)):60:60 --press $((keyA + 1)):60:60 --press $((keyA + 2)):60:60 --press $((keyA + 3)):60:60 --press $((keyA + 4)):60:60 --dump-domain RAM "$work/five.ram"
+nat five t --frames 100 --press "$(index t "Key A")":60:60 --press "$(index t "Key B")":60:60 --press "$(index t "Key C")":60:60 --press "$(index t "Key D")":60:60 --press "$(index t "Key E")":60:60 --dump-domain RAM "$work/five.ram"
 check "tic:four-keys" "with five keys held (A to E) the cart sees the first four, as TIC-80 holds four at once ($(hex "$work/five.ram" 0x8008 2))" \
 	[ "$(hex "$work/five.ram" 0x8008 2)" = 0f00 ]
 
@@ -258,7 +280,7 @@ PY
 
 # ------------------------------------------------- native and sandbox, states
 p1a="$(index t "P1 A")"
-allrun="--frames 300 --report 10 --press $p1a:50:40 --press $((keyA + 3)):80:30 --press $ml:100:20 --axis 0:10000:120:60 --axis 1:50000:150:40 --press 10:200:30"
+allrun="--frames 300 --report 10 --press $p1a:50:40 --press $(index t "Key D"):80:30 --press $ml:100:20 --axis 0:10000:120:60 --axis 1:50000:150:40 --press 10:200:30"
 nat all t $allrun
 nat idle10 t --frames 300 --report 10
 box all-box t $allrun

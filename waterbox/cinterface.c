@@ -54,24 +54,44 @@ static int g_audioFrames;
 
 /* ---- the controls -------------------------------------------------------
  * Four gamepads of eight buttons, the mouse's three buttons, and the 94 keys
- * TIC-80 knows. A cart sees at most four keys at once (TIC80_KEY_BUFFER): if
- * more are held, the first four in this list. Every control is live whatever
+ * TIC-80 knows, listed as they sit on the keyboard, row by row from the top,
+ * then the keys beside the rows, the arrows and the keypad (chimera#337),
+ * each with TIC-80's code for it. A cart sees at most four keys at once
+ * (TIC80_KEY_BUFFER): if more are held, the four with the lowest codes, as
+ * it was before the keys were listed in rows. Every control is live whatever
  * the cart declares (its "input" tag), because a cart can read them all. */
 enum { kPadButtons = 8, kPads = 4, kMouseLeft = kPads * kPadButtons, kMouseMiddle, kMouseRight, kFirstKey };
 static const char *const kPadNames[kPadButtons] = { "Up", "Down", "Left", "Right", "A", "B", "X", "Y" };
-static const char *const kKeyNames[tic_keys_count - 1] = {
-	"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
-	"V", "W", "X", "Y", "Z",
-	"0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-	"-", "=", "[", "]", "\\", ";", "'", "`", ",", ".", "/",
-	"Space", "Tab", "Return", "Backspace", "Delete", "Insert",
-	"Page Up", "Page Down", "Home", "End", "Up", "Down", "Left", "Right",
-	"Caps Lock", "Ctrl", "Shift", "Alt",
-	"Escape", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12",
-	"Keypad 0", "Keypad 1", "Keypad 2", "Keypad 3", "Keypad 4", "Keypad 5", "Keypad 6", "Keypad 7",
-	"Keypad 8", "Keypad 9", "Keypad +", "Keypad -", "Keypad *", "Keypad /", "Keypad Enter", "Keypad .",
+static const struct { const char *name; tic_key code; } kKeys[tic_keys_count - 1] = {
+	{ "Escape", tic_key_escape }, { "F1", tic_key_f1 }, { "F2", tic_key_f2 }, { "F3", tic_key_f3 },
+	{ "F4", tic_key_f4 }, { "F5", tic_key_f5 }, { "F6", tic_key_f6 }, { "F7", tic_key_f7 },
+	{ "F8", tic_key_f8 }, { "F9", tic_key_f9 }, { "F10", tic_key_f10 }, { "F11", tic_key_f11 },
+	{ "F12", tic_key_f12 },
+	{ "`", tic_key_grave }, { "1", tic_key_1 }, { "2", tic_key_2 }, { "3", tic_key_3 }, { "4", tic_key_4 },
+	{ "5", tic_key_5 }, { "6", tic_key_6 }, { "7", tic_key_7 }, { "8", tic_key_8 }, { "9", tic_key_9 },
+	{ "0", tic_key_0 }, { "-", tic_key_minus }, { "=", tic_key_equals }, { "Backspace", tic_key_backspace },
+	{ "Tab", tic_key_tab }, { "Q", tic_key_q }, { "W", tic_key_w }, { "E", tic_key_e }, { "R", tic_key_r },
+	{ "T", tic_key_t }, { "Y", tic_key_y }, { "U", tic_key_u }, { "I", tic_key_i }, { "O", tic_key_o },
+	{ "P", tic_key_p }, { "[", tic_key_leftbracket }, { "]", tic_key_rightbracket },
+	{ "\\", tic_key_backslash },
+	{ "Caps Lock", tic_key_capslock }, { "A", tic_key_a }, { "S", tic_key_s }, { "D", tic_key_d },
+	{ "F", tic_key_f }, { "G", tic_key_g }, { "H", tic_key_h }, { "J", tic_key_j }, { "K", tic_key_k },
+	{ "L", tic_key_l }, { ";", tic_key_semicolon }, { "'", tic_key_apostrophe }, { "Return", tic_key_return },
+	{ "Shift", tic_key_shift }, { "Z", tic_key_z }, { "X", tic_key_x }, { "C", tic_key_c }, { "V", tic_key_v },
+	{ "B", tic_key_b }, { "N", tic_key_n }, { "M", tic_key_m }, { ",", tic_key_comma }, { ".", tic_key_period },
+	{ "/", tic_key_slash },
+	{ "Ctrl", tic_key_ctrl }, { "Alt", tic_key_alt }, { "Space", tic_key_space },
+	{ "Insert", tic_key_insert }, { "Home", tic_key_home }, { "Page Up", tic_key_pageup },
+	{ "Delete", tic_key_delete }, { "End", tic_key_end }, { "Page Down", tic_key_pagedown },
+	{ "Up", tic_key_up }, { "Left", tic_key_left }, { "Down", tic_key_down }, { "Right", tic_key_right },
+	{ "Keypad /", tic_key_numpaddivide }, { "Keypad *", tic_key_numpadmultiply },
+	{ "Keypad -", tic_key_numpadminus }, { "Keypad 7", tic_key_numpad7 }, { "Keypad 8", tic_key_numpad8 },
+	{ "Keypad 9", tic_key_numpad9 }, { "Keypad +", tic_key_numpadplus }, { "Keypad 4", tic_key_numpad4 },
+	{ "Keypad 5", tic_key_numpad5 }, { "Keypad 6", tic_key_numpad6 }, { "Keypad 1", tic_key_numpad1 },
+	{ "Keypad 2", tic_key_numpad2 }, { "Keypad 3", tic_key_numpad3 }, { "Keypad Enter", tic_key_numpadenter },
+	{ "Keypad 0", tic_key_numpad0 }, { "Keypad .", tic_key_numpadperiod },
 };
-#define KEY_COUNT ((int)(sizeof kKeyNames / sizeof kKeyNames[0]))
+#define KEY_COUNT ((int)(sizeof kKeys / sizeof kKeys[0]))
 #define BUTTON_COUNT (kFirstKey + KEY_COUNT)
 static char g_buttonNames[BUTTON_COUNT][24];
 static int g_held[BUTTON_COUNT];
@@ -122,9 +142,10 @@ static tic80_input make_input(void)
 	}
 
 	int n = 0;
-	for (int k = 0; k < KEY_COUNT && n < TIC80_KEY_BUFFER; k++)
-		if (g_held[kFirstKey + k])
-			in.keyboard.keys[n++] = (tic_key)(k + 1);
+	for (int code = 1; code <= KEY_COUNT && n < TIC80_KEY_BUFFER; code++)
+		for (int k = 0; k < KEY_COUNT; k++)
+			if (kKeys[k].code == code && g_held[kFirstKey + k])
+				in.keyboard.keys[n++] = (tic_key)code;
 	return in;
 }
 
@@ -358,7 +379,7 @@ ECL_EXPORT int Init(void)
 	snprintf(g_buttonNames[kMouseMiddle], sizeof g_buttonNames[0], "Mouse Middle");
 	snprintf(g_buttonNames[kMouseRight], sizeof g_buttonNames[0], "Mouse Right");
 	for (int k = 0; k < KEY_COUNT; k++)
-		snprintf(g_buttonNames[kFirstKey + k], sizeof g_buttonNames[0], "Key %s", kKeyNames[k]);
+		snprintf(g_buttonNames[kFirstKey + k], sizeof g_buttonNames[0], "Key %s", kKeys[k].name);
 
 	g_tic = tic80_create(TIC80_SAMPLERATE, TIC80_PIXEL_COLOR_BGRA8888);
 	if (!g_tic)
