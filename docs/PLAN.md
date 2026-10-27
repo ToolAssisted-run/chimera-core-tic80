@@ -138,8 +138,7 @@ does not give its keys: the digits ("0" for "Number0"), "Grave",
 Those controls shipped unbound. The window test checked only that Chimera
 takes the package's bindings, not that the keys exist.
 
-**Decided.** The names are Chimera's (its DistinctKey list and the names
-DistinctKeyNameOverrides gives some keys), and a new test,
+**Decided.** The names are Chimera's (the window's key tables), and a new test,
 `package:key-names` (`tests/check-key-names.py`), reads that list from
 Chimera's source and checks every binding against it. Measured: the old
 bindings fail it with those 16 keys, the new ones pass.
@@ -147,10 +146,10 @@ bindings fail it with those 16 keys, the new ones pass.
 ## 2026-10-14: the modifier keys too
 
 **Found.** Chimera hands a key to the bindings under one name only: the
-name DistinctKeyNameOverrides gives it ("Number1", "Enter", "Backtick",
-"KeypadAdd"), or else its DistinctKey name (Input.cs). By default it also
+name Chimera gives it ("Number1", "Enter", "Backtick",
+"KeypadAdd"), or else its own name. By default it also
 reads the left and right Shift, Ctrl and Alt as one key each, "Shift",
-"Ctrl" and "Alt" (Config.MergeLAndRModifierKeys). A binding to any other
+"Ctrl" and "Alt". A binding to any other
 name never fires, so those controls shipped unbound.
 
 **Decided.** The bindings use those names; where both keys of a modifier
