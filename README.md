@@ -3,7 +3,7 @@
 A core for [Chimera](https://github.com/ToolAssisted-run/chimera), the
 frontend for tool-assisted speedruns, for the fantasy computer
 **[TIC-80](https://tic80.com)**. It is built on TIC-80's own source and
-produces one file, `tic80.chimeraCore`, that goes in Chimera's `Cores`
+produces one file, `tic80.chimeraCore`, that goes in Chimera's `cores`
 folder.
 
 ## Status

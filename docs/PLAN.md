@@ -166,7 +166,7 @@ now on Ctrl, Shift and Alt.
 one, which a default setup sends, and the side's own ("Shift, LeftShift";
 the right key on "RightShift"), which fires when the merging is turned off,
 as other cores already do. `package:key-names` accepts a left or right name
-only when the merged one is bound too. Checked on Xvfb: with 1, Return, left
+only when the merged one is bound too. Checked in the window on a virtual display: with 1, Return, left
 Shift and Up held, Chimera's window reports Number1, Enter, Shift and Up.
 
 ## The cursor is the first video bank's (chimera#318, 2026-10-20)

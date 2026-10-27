@@ -91,13 +91,13 @@ file of anyone's: `tests/make-tic80-cart.py` writes a cart whose program
 reads every control and the clocks, and TIC-80's source carries a demo cart
 of each language (`extern/tic80/build/assets/*demo.tic.dat`, which
 `tests/extract-demo.py` writes out). The second runs the package in
-Chimera's window under Mono on a private Xvfb display; it needs Chimera's
-interface built (`dotnet build`).
+Chimera's window, run headless (no display is needed); it needs Chimera built
+with its window (`tools/ci-chimera.sh`).
 
 Chimera's own checks of a package:
 
 ```sh
-CHIMERA_CORES_DIR=<folder with the package> dotnet test source/gui/Chimera.Tests.Client.Common/Chimera.Tests.Client.Common.csproj -c Release --filter "FullyQualifiedName~InstalledCorePackagesTests|FullyQualifiedName~MnemonicUniquenessTests"
+CHIMERA_CORES_DIR=<folder with the package> <chimera>/build/meson-linux/source/ui/test-packages
 ```
 
 run in the Chimera checkout.
