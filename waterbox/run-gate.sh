@@ -318,15 +318,15 @@ done
 python3 "$root/tests/extract-demo.py" "$assets/rubydemo.tic.dat" "$work/carts/ruby.tic"
 folder ruby '{}' "$work/carts/ruby.tic"
 nat ruby ruby --frames 1
-check "refused:ruby" "a cart in Ruby, which this core does not build, is refused, and says so" grep -q "Init failed.*written in ruby" "$work/ruby.out" "$work/ruby.err"
+check "refused:ruby" "a cart in Ruby, which this core does not build, is refused, and says so" grep -q "Init failed.*error.language.ruby" "$work/ruby.out" "$work/ruby.err"
 mkdir -p "$work/none"
 printf '{"cart":[]}' > "$work/none/slots"; printf '{}' > "$work/none/settings"
 nat none none --frames 1
-check "refused:no-cart" "a machine with no cart is refused, and says so" grep -q "Init failed.*no cart was given" "$work/none.out" "$work/none.err"
+check "refused:no-cart" "a machine with no cart is refused, and says so" grep -q "Init failed.*error.no_file" "$work/none.out" "$work/none.err"
 printf 'not a cart' > "$work/carts/junk.tic"
 folder junk '{}' "$work/carts/junk.tic"
 nat junk junk --frames 1
-check "refused:not-a-cart" "a file that is not a cart is refused, and says so" grep -q "Init failed.*not a TIC-80 cart" "$work/junk.out" "$work/junk.err"
+check "refused:not-a-cart" "a file that is not a cart is refused, and says so" grep -q "Init failed.*error.not_cart" "$work/junk.out" "$work/junk.err"
 folder er '{}' "$work/carts/test-error.tic"
 nat er er --frames 60 --report 60
 check "cart:error" "a cart whose code stops with an error says so once ($(grep -c 'stopped with an error' "$work/er.err") times in 60 frames), and the machine goes on" \

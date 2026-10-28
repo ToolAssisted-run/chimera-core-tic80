@@ -1,0 +1,20 @@
+{
+	"texts": {
+		"error.language": "Kart %1 dilinde yazılmış; bu çekirdek onu çalıştırmaz.",
+		"error.no_file": "Projede kart yok.",
+		"error.not_cart": "'%1' bir TIC-80 kartı değil (.tic ya da .png), ya da kodu yok.",
+		"error.not_read": "'%1' kartı okunamadı.",
+		"error.not_started": "TIC-80 başlamadı.",
+		"setting.initialtime": "Başlangıç Saati",
+		"setting.initialtime.about": "Bir kartın başlarken tstamp() ile okuduğu tarih ve saat, 1970'ten itibaren saniye olarak (Unix zamanı); sonra makineyle birlikte, saniyede 60 kare ile çalışır. Varsayılan 1 Ocak 2000'dir. Betik dilleri de rastgele sayılarını bu saatten başlatır. Bu bir ayardır, bilgisayarınızın saati değil; böylece bir film herhangi bir günde aynı oynar. Makinenin bir parçasıdır, bu yüzden bir film aynı değeri ister.",
+		"setting.mousecursor": "Fare İmleci",
+		"setting.mousecursor.about": "'show', kart fareyi kullandığında imleci resmin üstüne çizer; TIC-80'in kendi oynatıcısının yaptığı gibi: kartın kendi imleci ya da TIC-80'in oku. 'hide' onu dışarıda bırakır. Makinede hiçbir şeyi değiştirmez.",
+		"setting.picture": "Resim",
+		"setting.picture.about": "'full', TIC-80'in bütün resmini gösterir, 256x144: 240x136 ekranı ve çevresindeki, kartların üzerine çizebildiği kenarlığı. 'screen' yalnızca ekranı gösterir. Fare X ve Fare Y, gösterilen resimdeki bir yerdir. Makinede hiçbir şeyi değiştirmez.",
+		"slot.cart": "Kart",
+		"slot.cart.help": "TIC-80 kartı: bir .tic dosyası ya da bir .png kartı (içinde kartın bulunduğu bir resim; tic80.com'un sunduğu gibi).",
+		"slot.savedata": "Kayıt verisi",
+		"slot.savedata.help": "Kartın kaydettiği şey (pmem belleği, 1 KB) başlangıçta, kayıtlı bir oyundan başlayan proje için: Emulator > Export Save Data... ile yazılan bir dosya. Dosya asla değiştirilmez. Hiçbir şey kaydedilmemiş olarak başlamak için bunu boş bırakın.",
+		"slot.savedata.name_help": "Bir kayıt dosyası uzantısıyla tanınır: .pmem."
+	}
+}

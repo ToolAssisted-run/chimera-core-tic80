@@ -1,0 +1,20 @@
+{
+	"texts": {
+		"error.language": "Kartridż jest napisany w %1, którego ten rdzeń nie uruchamia.",
+		"error.no_file": "W projekcie nie ma kartridża.",
+		"error.not_cart": "'%1' nie jest kartridżem TIC-80 (.tic albo .png) albo nie ma w nim kodu.",
+		"error.not_read": "Nie udało się odczytać kartridża '%1'.",
+		"error.not_started": "TIC-80 się nie uruchomił.",
+		"setting.initialtime": "Zegar startowy",
+		"setting.initialtime.about": "Data i godzina, które kartridż odczytuje przez tstamp() przy starcie, w sekundach od 1970 (czas Unix); potem biegnie z maszyną, z 60 klatkami na sekundę. Domyślnie jest to 1 stycznia 2000. Języki skryptowe też biorą z tego zegara swoje liczby losowe. To jest ustawienie, a nie zegar twojego komputera, dzięki czemu nagranie odtwarza się tak samo w każdym dniu. Jest częścią maszyny, więc nagranie potrzebuje tej samej wartości.",
+		"setting.mousecursor": "Kursor myszy",
+		"setting.mousecursor.about": "„show” rysuje kursor myszy na obrazie, gdy kartridż używa myszy, tak jak robi to własny odtwarzacz TIC-80: kursor kartridża albo strzałka TIC-80. „hide” go pomija. Nic nie zmienia w maszynie.",
+		"setting.picture": "Obraz",
+		"setting.picture.about": "„full” pokazuje cały obraz TIC-80, 256x144: ekran 240x136 i ramkę wokół niego, na której kartridże mogą rysować. „screen” pokazuje sam ekran. Mouse X i Mouse Y to miejsce na pokazywanym obrazie. Nic nie zmienia w maszynie.",
+		"slot.cart": "Kartridż",
+		"slot.cart.help": "Kartridż TIC-80: plik .tic albo kartridż .png (obraz z kartridżem w środku, jak oferuje tic80.com).",
+		"slot.savedata": "Zapis gry",
+		"slot.savedata.help": "To, co kartridż zapisał (jego pamięć pmem, 1 KB), na starcie, dla projektu zaczynającego się od zapisanej gry: plik zapisany przez Emulator > Export Save Data... Plik nigdy nie jest zmieniany. Zostaw to puste, aby zacząć bez niczego zapisanego.",
+		"slot.savedata.name_help": "plik zapisu rozpoznaje się po rozszerzeniu .pmem."
+	}
+}

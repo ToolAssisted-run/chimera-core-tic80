@@ -1,0 +1,20 @@
+{
+	"texts": {
+		"error.language": "Băng được viết bằng %1, mà lõi này không chạy.",
+		"error.no_file": "Không có băng nào trong dự án.",
+		"error.not_cart": "'%1' không phải là băng TIC-80 (.tic hoặc .png), hoặc nó không có mã.",
+		"error.not_read": "Không đọc được băng '%1'.",
+		"error.not_started": "TIC-80 không khởi động.",
+		"setting.initialtime": "Đồng hồ khi bắt đầu",
+		"setting.initialtime.about": "Ngày và giờ mà một băng đọc bằng tstamp() khi nó bắt đầu, tính bằng giây từ năm 1970 (thời gian Unix); sau đó nó chạy cùng máy, ở 60 khung hình mỗi giây. Mặc định là ngày 1 tháng 1 năm 2000. Các ngôn ngữ kịch bản cũng bắt đầu số ngẫu nhiên của chúng từ đồng hồ này. Đây là một thiết lập, không phải đồng hồ của máy tính bạn, để một bản ghi phát lại giống nhau vào bất kỳ ngày nào. Đây là một phần của máy, nên một bản ghi cần cùng giá trị.",
+		"setting.mousecursor": "Con trỏ chuột",
+		"setting.mousecursor.about": "'show' vẽ con trỏ chuột lên hình ảnh khi băng dùng chuột, như trình phát của chính TIC-80 làm: con trỏ riêng của băng, hoặc mũi tên của TIC-80. 'hide' bỏ nó đi. Nó không thay đổi gì trong máy.",
+		"setting.picture": "Hình ảnh",
+		"setting.picture.about": "'full' hiển thị toàn bộ hình ảnh của TIC-80, 256x144: màn hình 240x136 và viền quanh nó, nơi các băng có thể vẽ lên. 'screen' chỉ hiển thị màn hình. Mouse X và Mouse Y là một vị trí trên hình ảnh được hiển thị. Nó không thay đổi gì trong máy.",
+		"slot.cart": "Băng",
+		"slot.cart.help": "Băng TIC-80: một tệp .tic, hoặc một băng .png (một hình ảnh có băng ở bên trong, như tic80.com cung cấp).",
+		"slot.savedata": "Dữ liệu lưu",
+		"slot.savedata.help": "Những gì băng đã lưu (bộ nhớ pmem của nó, 1 KB) khi bắt đầu, cho một dự án bắt đầu từ một lần lưu: một tệp như Emulator > Export Save Data... ghi ra. Tệp không bao giờ bị thay đổi. Để trống để bắt đầu với không có gì được lưu.",
+		"slot.savedata.name_help": "một tệp lưu được nhận biết qua phần mở rộng của nó, .pmem."
+	}
+}

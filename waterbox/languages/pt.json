@@ -1,0 +1,20 @@
+{
+	"texts": {
+		"error.language": "O cartucho é escrito em %1, que este núcleo não executa.",
+		"error.no_file": "Nenhum cartucho está no projeto.",
+		"error.not_cart": "'%1' não é um cartucho do TIC-80 (.tic ou .png), ou não tem código.",
+		"error.not_read": "Não foi possível ler o cartucho '%1'.",
+		"error.not_started": "O TIC-80 não iniciou.",
+		"setting.initialtime": "Relógio inicial",
+		"setting.initialtime.about": "A data e a hora que um cartucho lê com tstamp() ao iniciar, em segundos desde 1970 (hora Unix); depois ele funciona junto com a máquina, a 60 quadros por segundo. O padrão é 1º de janeiro de 2000. As linguagens de script também começam seus números aleatórios por este relógio. Isto é uma configuração, e não o relógio do seu computador, para que um filme reproduza igual em qualquer dia. Faz parte da máquina, então um filme precisa do mesmo valor.",
+		"setting.mousecursor": "Cursor do mouse",
+		"setting.mousecursor.about": "'show' desenha o cursor do mouse na imagem quando o cartucho usa o mouse, como o próprio reprodutor do TIC-80 faz: o cursor do próprio cartucho, ou a seta do TIC-80. 'hide' o deixa de fora. Não muda nada na máquina.",
+		"setting.picture": "Imagem",
+		"setting.picture.about": "'full' mostra a imagem inteira do TIC-80, 256x144: a tela de 240x136 e a borda em volta dela, onde os cartuchos podem desenhar. 'screen' mostra só a tela. Mouse X e Mouse Y são uma posição na imagem mostrada. Não muda nada na máquina.",
+		"slot.cart": "Cartucho",
+		"slot.cart.help": "O cartucho do TIC-80: um arquivo .tic, ou um cartucho .png (uma imagem com o cartucho dentro, como as que o tic80.com oferece).",
+		"slot.savedata": "Dados salvos",
+		"slot.savedata.help": "O que o cartucho salvou (sua memória pmem, 1 KB) no início, para um projeto que começa de um jogo salvo: um arquivo que Emulador > Exportar dados salvos... grava. O arquivo nunca é alterado. Deixe isto vazio para começar sem nada salvo.",
+		"slot.savedata.name_help": "um arquivo de dados salvos é identificado pela sua extensão, .pmem."
+	}
+}

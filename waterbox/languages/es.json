@@ -1,0 +1,20 @@
+{
+	"texts": {
+		"error.language": "El cartucho está escrito en %1, que este núcleo no ejecuta.",
+		"error.no_file": "No hay ningún cartucho en el proyecto.",
+		"error.not_cart": "'%1' no es un cartucho de TIC-80 (.tic o .png), o no tiene código.",
+		"error.not_read": "No se pudo leer el cartucho '%1'.",
+		"error.not_started": "TIC-80 no arrancó.",
+		"setting.initialtime": "Reloj de inicio",
+		"setting.initialtime.about": "La fecha y hora que lee un cartucho con tstamp() al empezar, en segundos desde 1970 (hora Unix); después avanza con la máquina, a 60 fotogramas por segundo. El valor por defecto es el 1 de enero de 2000. Los lenguajes de script también parten de este reloj para sus números aleatorios. Es un ajuste, y no el reloj de tu ordenador, para que una película se reproduzca igual cualquier día. Forma parte de la máquina, así que una película necesita el mismo valor.",
+		"setting.mousecursor": "Cursor del ratón",
+		"setting.mousecursor.about": "'show' dibuja el cursor del ratón sobre la imagen cuando el cartucho usa el ratón, como hace el propio reproductor de TIC-80: el cursor del cartucho, o la flecha de TIC-80. 'hide' lo deja fuera. No cambia nada de la máquina.",
+		"setting.picture": "Imagen",
+		"setting.picture.about": "'full' muestra toda la imagen de TIC-80, 256x144: la pantalla de 240x136 y el borde que la rodea, sobre el que pueden dibujar los cartuchos. 'screen' muestra solo la pantalla. Mouse X y Mouse Y son una posición de la imagen mostrada. No cambia nada de la máquina.",
+		"slot.cart": "Cartucho",
+		"slot.cart.help": "El cartucho de TIC-80: un archivo .tic, o un cartucho .png (una imagen con el cartucho dentro, como los que ofrece tic80.com).",
+		"slot.savedata": "Datos de guardado",
+		"slot.savedata.help": "Lo que ha guardado el cartucho (su memoria pmem, 1 KB) al empezar, para un proyecto que parte de una partida guardada: un archivo que escribe Emulador > Exportar datos de guardado... El archivo nunca se cambia. Deja esto vacío para empezar sin nada guardado.",
+		"slot.savedata.name_help": "un archivo de guardado se reconoce por su extensión, .pmem."
+	}
+}

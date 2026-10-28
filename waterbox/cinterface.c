@@ -29,6 +29,11 @@
 #include "core/core.h"
 
 /* ---- what went wrong, for Chimera to show -------------------------------- */
+/* A text a person reads is a key of languages/en.json, each of its
+ * arguments after a TEXT_ARG (chimera docs/translations.md). TEXT_ARG is a
+ * string of its own so the byte after it is never read as more of its hex. */
+#define TEXT_ARG "\x1f"
+
 static char g_loadError[512];
 
 /* ---- the machine -------------------------------------------------------- */
@@ -373,14 +378,14 @@ ECL_EXPORT int Init(void)
 	}
 	if (!g_cartName[0])
 	{
-		snprintf(g_loadError, sizeof g_loadError, "no cart was given");
+		snprintf(g_loadError, sizeof g_loadError, "error.no_file");
 		return 0;
 	}
 	long size = 0;
 	void *cart = read_file(g_cartName, &size);
 	if (!cart)
 	{
-		snprintf(g_loadError, sizeof g_loadError, "the cart %s could not be read", g_cartName);
+		snprintf(g_loadError, sizeof g_loadError, "error.not_read" TEXT_ARG "%s", g_cartName);
 		return 0;
 	}
 
@@ -405,7 +410,7 @@ ECL_EXPORT int Init(void)
 	if (!g_tic)
 	{
 		free(cart);
-		snprintf(g_loadError, sizeof g_loadError, "TIC-80 did not start");
+		snprintf(g_loadError, sizeof g_loadError, "error.not_started");
 		return 0;
 	}
 	g_mem = (tic_mem *)g_tic;
@@ -418,7 +423,7 @@ ECL_EXPORT int Init(void)
 	/* a cart whose language is not in this core (Ruby), or with no code */
 	if (!g_mem->cart.code.data[0] && !g_mem->cart.binary.size)
 	{
-		snprintf(g_loadError, sizeof g_loadError, "%s is not a TIC-80 cart (.tic or .png), or it has no code", g_cartName);
+		snprintf(g_loadError, sizeof g_loadError, "error.not_cart" TEXT_ARG "%s", g_cartName);
 		return 0;
 	}
 	/* TIC-80 runs a cart whose language it does not find as Lua; a cart that
@@ -434,7 +439,7 @@ ECL_EXPORT int Init(void)
 		const char *lang = tic_tool_metatag(g_mem->cart.code.data, "script", NULL);
 		if (!known && *lang)
 		{
-			snprintf(g_loadError, sizeof g_loadError, "the cart is written in %s, which this core does not run", lang);
+			snprintf(g_loadError, sizeof g_loadError, "error.language" TEXT_ARG "%s", lang);
 			return 0;
 		}
 	}

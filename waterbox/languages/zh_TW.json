@@ -1,0 +1,20 @@
+{
+	"texts": {
+		"error.language": "此卡匣是以 %1 撰寫的,本核心不執行它。",
+		"error.no_file": "專案中沒有卡匣。",
+		"error.not_cart": "「%1」不是 TIC-80 卡匣(.tic 或 .png),或它沒有程式碼。",
+		"error.not_read": "無法讀取卡匣「%1」。",
+		"error.not_started": "TIC-80 無法啟動。",
+		"setting.initialtime": "開機時鐘",
+		"setting.initialtime.about": "卡匣啟動時以 tstamp() 讀取的日期與時間,以 1970 年起的秒數計(Unix 時間);之後以每秒 60 個影格隨機器運行。預設為 2000 年 1 月 1 日。腳本語言也以此時鐘作為亂數的起點。這是一個設定,而不是你電腦的時鐘,使錄影在任何一天播放都相同。它屬於機器的一部分,因此錄影需要相同的值。",
+		"setting.mousecursor": "滑鼠游標",
+		"setting.mousecursor.about": "「show」在卡匣使用滑鼠時,於畫面上繪製滑鼠游標,與 TIC-80 自己的播放器相同:卡匣自己的游標,或 TIC-80 的箭頭。「hide」則不顯示。它不改變機器的任何內容。",
+		"setting.picture": "畫面",
+		"setting.picture.about": "「full」顯示 TIC-80 的完整畫面,256x144:240x136 的螢幕,以及四周卡匣可以繪製的邊框。「screen」只顯示螢幕。滑鼠 X 與滑鼠 Y 是所顯示畫面上的位置。它不改變機器的任何內容。",
+		"slot.cart": "卡匣",
+		"slot.cart.help": "TIC-80 卡匣:一個 .tic 檔,或一個 .png 卡匣(一張內含卡匣的圖片,如 tic80.com 所提供的)。",
+		"slot.savedata": "存檔",
+		"slot.savedata.help": "卡匣已保存的內容(其 pmem 記憶體,1 KB)在開始時的狀態,供從已存檔的專案開始使用:「模擬器 > 匯出存檔資料...」寫出的檔案。檔案本身永遠不會被更改。留空則以未保存任何內容開始。",
+		"slot.savedata.name_help": "存檔檔案以副檔名辨識,即 .pmem。"
+	}
+}

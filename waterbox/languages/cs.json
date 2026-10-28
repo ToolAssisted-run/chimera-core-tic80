@@ -1,0 +1,20 @@
+{
+	"texts": {
+		"error.language": "Kazeta je napsaná v %1, a to toto jádro nespouští.",
+		"error.no_file": "V projektu není žádná kazeta.",
+		"error.not_cart": "„%1“ není kazeta TIC-80 (.tic nebo .png), nebo nemá kód.",
+		"error.not_read": "Kazetu „%1“ se nepodařilo přečíst.",
+		"error.not_started": "TIC-80 se nespustil.",
+		"setting.initialtime": "Počáteční hodiny",
+		"setting.initialtime.about": "Datum a čas, které kazeta přečte přes tstamp(), když se spustí, v sekundách od roku 1970 (Unix time); pak běží se strojem, 60 snímků za sekundu. Výchozí je 1. ledna 2000. Skriptovací jazyky také začínají svá náhodná čísla od těchto hodin. Je to nastavení, a ne hodiny tvého počítače, aby se film přehrál stejně kterýkoli den. Je součástí stroje, takže film potřebuje stejnou hodnotu.",
+		"setting.mousecursor": "Kurzor myši",
+		"setting.mousecursor.about": "„show“ kreslí kurzor myši na obraz, když ji kazeta používá, jako to dělá vlastní přehrávač TIC-80: kurzor kazety, nebo šipku TIC-80. „hide“ ho vynechá. Nemění nic ve stroji.",
+		"setting.picture": "Obraz",
+		"setting.picture.about": "„full“ ukáže celý obraz TIC-80, 256x144: obrazovku 240x136 a rámeček kolem ní, na který mohou kazety kreslit. „screen“ ukáže jen obrazovku. Myš X a myš Y jsou místo na zobrazeném obraze. Nemění nic ve stroji.",
+		"slot.cart": "Kazeta",
+		"slot.cart.help": "Kazeta TIC-80: soubor .tic, nebo kazeta .png (obrázek s kazetou uvnitř, jaké nabízí tic80.com).",
+		"slot.savedata": "Uložená data",
+		"slot.savedata.help": "Co kazeta uložila (její paměť pmem, 1 KB) na začátku, pro projekt, který začíná z uložené hry: soubor, jak ho zapisuje Emulator > Export Save Data... Soubor se nikdy nemění. Nech prázdné, chceš-li začít s ničím uloženým.",
+		"slot.savedata.name_help": "Soubor uložené hry se pozná podle přípony .pmem."
+	}
+}

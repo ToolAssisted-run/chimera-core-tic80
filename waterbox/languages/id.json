@@ -1,0 +1,20 @@
+{
+	"texts": {
+		"error.language": "Kartu ini ditulis dalam %1, yang tidak dijalankan core ini.",
+		"error.no_file": "Tidak ada kartu dalam proyek.",
+		"error.not_cart": "'%1' bukan kartu TIC-80 (.tic atau .png), atau tidak memiliki kode.",
+		"error.not_read": "Kartu '%1' tidak dapat dibaca.",
+		"error.not_started": "TIC-80 tidak berhasil dimulai.",
+		"setting.initialtime": "Jam Awal",
+		"setting.initialtime.about": "Tanggal dan waktu yang dibaca kartu dengan tstamp() ketika mulai, dalam detik sejak 1970 (waktu Unix); setelah itu ia berjalan bersama mesin, pada 60 bingkai per detik. Bawaannya adalah 1 Januari 2000. Bahasa skrip juga memulai bilangan acaknya dari jam ini. Ini adalah pengaturan, bukan jam komputer Anda, sehingga rekaman diputar dengan sama pada hari apa pun. Ini bagian dari mesin, sehingga rekaman membutuhkan nilai yang sama.",
+		"setting.mousecursor": "Kursor Mouse",
+		"setting.mousecursor.about": "'show' menggambar kursor mouse di atas gambar ketika kartu memakai mouse, seperti pemutar bawaan TIC-80: kursor milik kartu, atau panah TIC-80. 'hide' tidak menampilkannya. Ini tidak mengubah apa pun di dalam mesin.",
+		"setting.picture": "Gambar",
+		"setting.picture.about": "'full' menampilkan seluruh gambar TIC-80, 256x144: layar 240x136 dan batas di sekelilingnya, tempat kartu boleh menggambar. 'screen' hanya menampilkan layar. Mouse X dan Mouse Y adalah tempat pada gambar yang ditampilkan. Ini tidak mengubah apa pun di dalam mesin.",
+		"slot.cart": "Kartu",
+		"slot.cart.help": "Kartu TIC-80: file .tic, atau kartu .png (gambar dengan kartu di dalamnya, seperti yang ditawarkan tic80.com).",
+		"slot.savedata": "Data simpanan",
+		"slot.savedata.help": "Apa yang sudah disimpan kartu (memori pmem-nya, 1 KB) pada awalnya, untuk proyek yang dimulai dari data tersimpan: file seperti yang ditulis Emulator > Ekspor Data Simpanan... File tidak pernah diubah. Biarkan kosong untuk memulai tanpa apa pun yang tersimpan.",
+		"slot.savedata.name_help": "file simpanan dikenali dari ekstensinya, .pmem."
+	}
+}

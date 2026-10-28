@@ -1,0 +1,20 @@
+{
+	"texts": {
+		"error.language": "El cartutx està escrit en %1, que aquest nucli no executa.",
+		"error.no_file": "No hi ha cap cartutx al projecte.",
+		"error.not_cart": "'%1' no és un cartutx de TIC-80 (.tic o .png), o no té codi.",
+		"error.not_read": "No s'ha pogut llegir el cartutx '%1'.",
+		"error.not_started": "TIC-80 no s'ha iniciat.",
+		"setting.initialtime": "Rellotge d'inici",
+		"setting.initialtime.about": "La data i hora que llegeix un cartutx amb tstamp() quan s'inicia, en segons des de 1970 (temps Unix); després va amb la màquina, a 60 fotogrames per segon. El valor per defecte és l'u de gener del 2000. Els llenguatges de script també parteixen els seus nombres aleatoris d'aquest rellotge. Això és una configuració, i no el rellotge del vostre ordinador, perquè una pel·lícula es reprodueixi igual qualsevol dia. Forma part de la màquina, així que una pel·lícula necessita el mateix valor.",
+		"setting.mousecursor": "Cursor del ratolí",
+		"setting.mousecursor.about": "'show' dibuixa el cursor del ratolí a la imatge quan el cartutx usa el ratolí, tal com ho fa el reproductor propi de TIC-80: el cursor del cartutx, o la fletxa de TIC-80. 'hide' el deixa fora. No canvia res de la màquina.",
+		"setting.picture": "Imatge",
+		"setting.picture.about": "'full' mostra tota la imatge de TIC-80, 256x144: la pantalla de 240x136 i la vora que hi ha al voltant, on els cartutxos poden dibuixar. 'screen' mostra només la pantalla. Ratolí X i Ratolí Y són un lloc de la imatge mostrada. No canvia res de la màquina.",
+		"slot.cart": "Cartutx",
+		"slot.cart.help": "El cartutx de TIC-80: un fitxer .tic, o un cartutx .png (una imatge amb el cartutx dins, com els que ofereix tic80.com).",
+		"slot.savedata": "Dades desades",
+		"slot.savedata.help": "Què ha desat el cartutx (la seua memòria pmem, 1 KB) a l'inici, per a un projecte que comença des d'una partida desada: un fitxer tal com l'escriu Emulador > Exporta les dades desades... El fitxer mai no es canvia. Deixeu-ho buit per començar sense res desat.",
+		"slot.savedata.name_help": "un fitxer de desats s'identifica per la seua extensió, .pmem."
+	}
+}

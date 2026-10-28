@@ -1,0 +1,20 @@
+{
+	"texts": {
+		"error.language": "La cartuccia è scritta in %1, che questo core non esegue.",
+		"error.no_file": "Nel progetto non c'è nessuna cartuccia.",
+		"error.not_cart": "'%1' non è una cartuccia TIC-80 (.tic o .png), oppure non ha codice.",
+		"error.not_read": "Non è stato possibile leggere la cartuccia '%1'.",
+		"error.not_started": "TIC-80 non è partito.",
+		"setting.initialtime": "Orologio di avvio",
+		"setting.initialtime.about": "La data e l'ora che una cartuccia legge con tstamp() quando parte, in secondi dal 1970 (ora Unix); poi va avanti con la macchina, a 60 fotogrammi al secondo. Il valore predefinito è il primo gennaio 2000. Anche i linguaggi di script fanno partire i loro numeri casuali da questo orologio. È un'impostazione e non l'orologio del tuo computer, così un filmato si riproduce allo stesso modo in qualsiasi giorno. Fa parte della macchina, quindi un filmato richiede lo stesso valore.",
+		"setting.mousecursor": "Cursore del mouse",
+		"setting.mousecursor.about": "'show' disegna il cursore del mouse sull'immagine quando la cartuccia usa il mouse, come fa il lettore di TIC-80: il cursore della cartuccia, oppure la freccia di TIC-80. 'hide' lo lascia fuori. Non cambia nulla nella macchina.",
+		"setting.picture": "Immagine",
+		"setting.picture.about": "'full' mostra tutta l'immagine di TIC-80, 256x144: lo schermo 240x136 e il bordo intorno, su cui le cartucce possono disegnare. 'screen' mostra solo lo schermo. Mouse X e Mouse Y sono una posizione sull'immagine mostrata. Non cambia nulla nella macchina.",
+		"slot.cart": "Cartuccia",
+		"slot.cart.help": "La cartuccia TIC-80: un file .tic, oppure una cartuccia .png (un'immagine con la cartuccia dentro, come quelle offerte da tic80.com).",
+		"slot.savedata": "Dati di salvataggio",
+		"slot.savedata.help": "Ciò che la cartuccia ha salvato (la sua memoria pmem, 1 KB) all'inizio, per un progetto che parte da un gioco salvato: un file come lo scrive Emulatore > Esporta dati di salvataggio.... Il file non viene mai modificato. Lascia vuoto per partire senza nulla di salvato.",
+		"slot.savedata.name_help": "un file di salvataggio si riconosce dall'estensione, .pmem."
+	}
+}

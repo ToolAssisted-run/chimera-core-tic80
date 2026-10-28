@@ -1,0 +1,20 @@
+{
+	"texts": {
+		"error.language": "Kasetti on kirjoitettu kielellä %1, jota tämä ydin ei aja.",
+		"error.no_file": "Projektissa ei ole kasettia.",
+		"error.not_cart": "'%1' ei ole TIC-80-kasetti (.tic tai .png), tai siinä ei ole koodia.",
+		"error.not_read": "Kasettia '%1' ei voitu lukea.",
+		"error.not_started": "TIC-80 ei käynnistynyt.",
+		"setting.initialtime": "Alkukello",
+		"setting.initialtime.about": "Päivä ja kellonaika, jonka kasetti lukee tstamp()-funktiolla käynnistyessään, sekunteina vuodesta 1970 (Unix-aika); se käy sitten koneen mukana, 60 kuvaa sekunnissa. Oletus on 1. tammikuuta 2000. Skriptikielet ottavat satunnaislukunsa myös tästä kellosta. Tämä on asetus eikä tietokoneesi kello, jotta tallenne toistuu samalla tavalla joka päivä. Tämä kuuluu koneeseen, joten tallenne tarvitsee saman arvon.",
+		"setting.mousecursor": "Hiiren osoitin",
+		"setting.mousecursor.about": "'show' piirtää hiiren osoittimen kuvaan, kun kasetti käyttää hiirtä, kuten TIC-80:n oma soitin tekee: kasetin oma osoitin tai TIC-80:n nuoli. 'hide' jättää sen pois. Se ei muuta mitään koneessa.",
+		"setting.picture": "Kuva",
+		"setting.picture.about": "'full' näyttää TIC-80:n koko kuvan, 256x144: 240x136-ruudun ja sen ympärillä olevan reunuksen, johon kasetit voivat piirtää. 'screen' näyttää pelkän ruudun. Hiiren X ja Hiiren Y ovat paikka näytetyssä kuvassa. Se ei muuta mitään koneessa.",
+		"slot.cart": "Kasetti",
+		"slot.cart.help": "TIC-80-kasetti: .tic-tiedosto tai .png-kasetti (kuva, jonka sisällä kasetti on, kuten tic80.com niitä tarjoaa).",
+		"slot.savedata": "Tallennustiedot",
+		"slot.savedata.help": "Se, mitä kasetti on tallentanut (sen pmem-muisti, 1 KB), alussa, projektille, joka alkaa tallennetusta pelistä: tiedosto, sellaisena kuin Emulaattori > Vie tallennustiedot... sen kirjoittaa. Tiedostoa ei koskaan muuteta. Jätä tyhjäksi, jos haluat aloittaa ilman tallennuksia.",
+		"slot.savedata.name_help": "Tallennustiedosto tunnistetaan päätteestään, .pmem."
+	}
+}

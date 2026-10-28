@@ -1,0 +1,20 @@
+{
+	"texts": {
+		"error.language": "此卡带使用 %1 编写，本核心无法运行。",
+		"error.no_file": "项目中没有卡带。",
+		"error.not_cart": "“%1”不是 TIC-80 卡带（.tic 或 .png），或者它没有代码。",
+		"error.not_read": "无法读取卡带“%1”。",
+		"error.not_started": "TIC-80 未能启动。",
+		"setting.initialtime": "起始时钟",
+		"setting.initialtime.about": "卡带启动时用 tstamp() 读取的日期和时间，以自 1970 年起的秒数（Unix 时间）表示；此后它随机器一起以每秒 60 帧运行。默认为 2000 年 1 月 1 日。脚本语言也从这个时钟开始计算它们的随机数。这是一项设置，而不是您电脑的时钟，因此录像在任何一天回放结果都相同。它属于机型的一部分，因此录像需要相同的值。",
+		"setting.mousecursor": "鼠标光标",
+		"setting.mousecursor.about": "“show”在卡带使用鼠标时，像 TIC-80 自己的播放器那样在画面上绘制鼠标光标：即卡带自己的光标，或 TIC-80 的箭头。“hide”则不绘制。它不改变机器的任何内容。",
+		"setting.picture": "画面",
+		"setting.picture.about": "“full”显示 TIC-80 的整个画面，256x144：即 240x136 的屏幕，以及其周围卡带可以绘制的边框。“screen”只显示屏幕。鼠标 X 和鼠标 Y 指的是所显示画面上的位置。它不改变机器的任何内容。",
+		"slot.cart": "卡带",
+		"slot.cart.help": "TIC-80 卡带：一个 .tic 文件，或一个 .png 卡带（即内含卡带的图片，tic80.com 提供这种卡带）。",
+		"slot.savedata": "存档数据",
+		"slot.savedata.help": "项目从已保存的游戏开始时，卡带在开始时已保存的内容（其 pmem 存储器，1 KB）：由“模拟器 > 导出存档数据...”写出的文件。该文件从不会被改动。留空则以未保存任何内容开始。",
+		"slot.savedata.name_help": "存档文件通过其扩展名 .pmem 识别。"
+	}
+}

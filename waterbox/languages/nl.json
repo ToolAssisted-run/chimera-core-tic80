@@ -1,0 +1,20 @@
+{
+	"texts": {
+		"error.language": "De cart is geschreven in %1, en die taal draait deze core niet.",
+		"error.no_file": "Er staat geen cart in het project.",
+		"error.not_cart": "'%1' is geen TIC-80-cart (.tic of .png), of hij heeft geen code.",
+		"error.not_read": "De cart '%1' kon niet worden gelezen.",
+		"error.not_started": "TIC-80 is niet gestart.",
+		"setting.initialtime": "Startklok",
+		"setting.initialtime.about": "De datum en tijd die een cart met tstamp() leest wanneer hij start, in seconden sinds 1970 (Unix-tijd); daarna loopt hij mee met de machine, op 60 frames per seconde. De standaard is 1 januari 2000. De scripttalen laten hun willekeurige getallen ook op deze klok beginnen. Dit is een instelling en niet de klok van je computer, zodat een movie op elke dag hetzelfde afspeelt. Het hoort bij de machine, dus een movie heeft dezelfde waarde nodig.",
+		"setting.mousecursor": "Muiscursor",
+		"setting.mousecursor.about": "'show' tekent de muiscursor op het beeld wanneer de cart de muis gebruikt, zoals de eigen speler van TIC-80 doet: de eigen cursor van de cart, of de pijl van TIC-80. 'hide' laat hem weg. Het verandert niets aan de machine.",
+		"setting.picture": "Beeld",
+		"setting.picture.about": "'full' toont het hele beeld van TIC-80, 256x144: het scherm van 240x136 en de rand eromheen, waar carts op kunnen tekenen. 'screen' toont alleen het scherm. Mouse X en Mouse Y zijn een plaats op het getoonde beeld. Het verandert niets aan de machine.",
+		"slot.cart": "Cart",
+		"slot.cart.help": "De TIC-80-cart: een .tic-bestand, of een .png-cart (een afbeelding met de cart erin, zoals tic80.com ze aanbiedt).",
+		"slot.savedata": "Opgeslagen gegevens",
+		"slot.savedata.help": "Wat de cart heeft opgeslagen (zijn pmem-geheugen, 1 KB) bij de start, voor een project dat begint met een opgeslagen spel: een bestand zoals Emulator > Export Save Data... het schrijft. Het bestand wordt nooit veranderd. Laat dit leeg om met niets opgeslagen te beginnen.",
+		"slot.savedata.name_help": "een opslagbestand wordt herkend aan zijn extensie, .pmem."
+	}
+}

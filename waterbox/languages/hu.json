@@ -1,0 +1,20 @@
+{
+	"texts": {
+		"error.language": "A kazetta %1 nyelven íródott, amelyet ez a mag nem futtat.",
+		"error.no_file": "A projektben nincs kazetta.",
+		"error.not_cart": "„%1” nem TIC-80 kazetta (.tic vagy .png), vagy nincs benne kód.",
+		"error.not_read": "A(z) „%1” kazetta nem olvasható.",
+		"error.not_started": "A TIC-80 nem indult el.",
+		"setting.initialtime": "Kezdő óra",
+		"setting.initialtime.about": "A dátum és idő, amelyet a kazetta a tstamp() függvénnyel olvas indításkor, másodpercben 1970 óta (Unix-idő); utána a géppel fut, másodpercenként 60 képkockával. Az alapérték 2000. január 1. A szkriptnyelvek véletlenszámai is ebből az órából indulnak. Ez egy beállítás, nem a számítógéped órája, hogy egy felvétel bármelyik napon ugyanúgy játszódjon vissza. A gép része, ezért a felvételhez ugyanez az érték kell.",
+		"setting.mousecursor": "Egérmutató",
+		"setting.mousecursor.about": "A „show” rajzolja az egérmutatót a képre, amikor a kazetta az egeret használja, ahogyan a TIC-80 saját lejátszója: a kazetta saját mutatóját vagy a TIC-80 nyilát. A „hide” kihagyja. A gépben semmit sem változtat.",
+		"setting.picture": "Kép",
+		"setting.picture.about": "A „full” a TIC-80 teljes képét mutatja, 256x144-et: a 240x136-os képernyőt és a körülötte lévő szegélyt, amelyre a kazetták rajzolhatnak. A „screen” csak a képernyőt mutatja. Az Egér X és az Egér Y a megjelenített kép egy pontját jelöli. A gépben semmit sem változtat.",
+		"slot.cart": "Kazetta",
+		"slot.cart.help": "A TIC-80 kazetta: .tic fájl, vagy .png kazetta (kép, amelybe a kazetta bele van rejtve, ahogyan a tic80.com kínálja).",
+		"slot.savedata": "Mentési adatok",
+		"slot.savedata.help": "Amit a kazetta elmentett (a pmem memóriája, 1 KB) indulásnál, olyan projektnél, amely mentett játékból indul: a Mentési adatok exportálása... által írt fájl. A fájl sosem változik. Üresen hagyva semmi sincs elmentve indulásnál.",
+		"slot.savedata.name_help": "a mentési fájlt a kiterjesztése azonosítja: .pmem."
+	}
+}

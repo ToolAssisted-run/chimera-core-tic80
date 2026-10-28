@@ -1,0 +1,20 @@
+{
+	"texts": {
+		"error.language": "Cartușul este scris în %1, pe care acest nucleu nu îl rulează.",
+		"error.no_file": "Niciun cartuș nu este în proiect.",
+		"error.not_cart": "„%1” nu este un cartuș TIC-80 (.tic sau .png), sau nu are cod.",
+		"error.not_read": "Cartușul „%1” nu a putut fi citit.",
+		"error.not_started": "TIC-80 nu a pornit.",
+		"setting.initialtime": "Ceasul de pornire",
+		"setting.initialtime.about": "Data și ora pe care le citește un cartuș cu tstamp() când pornește, în secunde de la 1970 (ora Unix); apoi merge cu mașina, la 60 de cadre pe secundă. Implicit este 1 ianuarie 2000. Limbajele de scriptare își pornesc și ele numerele aleatoare din acest ceas. Aceasta este o setare, nu ceasul calculatorului tău, pentru ca o înregistrare să se redea la fel în orice zi. Face parte din mașină, deci o înregistrare are nevoie de aceeași valoare.",
+		"setting.mousecursor": "Cursorul mouse-ului",
+		"setting.mousecursor.about": "„show” desenează cursorul mouse-ului pe imagine când cartușul folosește mouse-ul, cum face propriul player al TIC-80: cursorul cartușului, sau săgeata TIC-80. „hide” îl lasă afară. Nu schimbă nimic în mașină.",
+		"setting.picture": "Imaginea",
+		"setting.picture.about": "„full” arată întreaga imagine a TIC-80, 256x144: ecranul de 240x136 și chenarul din jurul lui, pe care pot desena cartușele. „screen” arată doar ecranul. Mouse X și Mouse Y sunt un loc pe imaginea arătată. Nu schimbă nimic în mașină.",
+		"slot.cart": "Cartuș",
+		"slot.cart.help": "Cartușul TIC-80: un fișier .tic, sau un cartuș .png (o imagine cu cartușul în ea, ca cele oferite de tic80.com).",
+		"slot.savedata": "Date salvate",
+		"slot.savedata.help": "Ce a salvat cartușul (memoria lui pmem, 1 KB) la început, pentru un proiect care începe de la un joc salvat: un fișier scris de Emulator > Export Save Data... Fișierul nu este schimbat niciodată. Lasă gol ca să pornești cu nimic salvat.",
+		"slot.savedata.name_help": "un fișier de salvare se recunoaște după extensia lui, .pmem."
+	}
+}

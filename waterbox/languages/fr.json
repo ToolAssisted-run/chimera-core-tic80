@@ -1,0 +1,20 @@
+{
+	"texts": {
+		"error.language": "La cartouche est écrite en %1, que ce cœur ne fait pas tourner.",
+		"error.no_file": "Aucune cartouche n'est dans le projet.",
+		"error.not_cart": "'%1' n'est pas une cartouche TIC-80 (.tic ou .png), ou elle n'a pas de code.",
+		"error.not_read": "La cartouche '%1' n'a pas pu être lue.",
+		"error.not_started": "TIC-80 n'a pas démarré.",
+		"setting.initialtime": "Horloge de départ",
+		"setting.initialtime.about": "La date et l'heure que lit une cartouche avec tstamp() au démarrage, en secondes depuis 1970 (temps Unix) ; elle avance ensuite avec la machine, à 60 images par seconde. La valeur par défaut est le 1er janvier 2000. Les langages de script démarrent aussi leurs nombres aléatoires à partir de cette horloge. Il s'agit d'un réglage, et non de l'horloge de votre ordinateur, pour qu'un film se rejoue de la même façon quel que soit le jour. Il fait partie de la machine : un film a besoin de la même valeur.",
+		"setting.mousecursor": "Curseur de la souris",
+		"setting.mousecursor.about": "'show' dessine le curseur de la souris sur l'image quand la cartouche utilise la souris, comme le fait le lecteur de TIC-80 : le curseur de la cartouche, ou la flèche de TIC-80. 'hide' ne le montre pas. Cela ne change rien à la machine.",
+		"setting.picture": "Image",
+		"setting.picture.about": "'full' affiche toute l'image de TIC-80, 256x144 : l'écran de 240x136 et la bordure autour, sur laquelle les cartouches peuvent dessiner. 'screen' n'affiche que l'écran. Souris X et Souris Y sont une place sur l'image affichée. Cela ne change rien à la machine.",
+		"slot.cart": "Cartouche",
+		"slot.cart.help": "La cartouche TIC-80 : un fichier .tic, ou une cartouche .png (une image qui contient la cartouche, comme les proposent tic80.com).",
+		"slot.savedata": "Données de sauvegarde",
+		"slot.savedata.help": "Ce que la cartouche a sauvegardé (sa mémoire pmem, 1 Ko) au départ, pour un projet qui part d'une partie sauvegardée : un fichier tel que l'écrit Émulateur > Exporter les données de sauvegarde... Le fichier n'est jamais modifié. Laissez ce champ vide pour démarrer sans rien de sauvegardé.",
+		"slot.savedata.name_help": "un fichier de sauvegarde est reconnu à son extension, .pmem."
+	}
+}

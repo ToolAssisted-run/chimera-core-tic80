@@ -1,0 +1,20 @@
+{
+	"texts": {
+		"error.language": "Kassetten er skrevet i %1, som denne core ikke kører.",
+		"error.no_file": "Der er ingen kassette i projektet.",
+		"error.not_cart": "'%1' er ikke en TIC-80-kassette (.tic eller .png), eller den har ingen kode.",
+		"error.not_read": "Kassetten '%1' kunne ikke læses.",
+		"error.not_started": "TIC-80 startede ikke.",
+		"setting.initialtime": "Startur",
+		"setting.initialtime.about": "Dato og klokkeslæt, en kassette læser med tstamp(), når den starter, i sekunder siden 1970 (Unix-tid); det løber så med maskinen, med 60 billeder i sekundet. Standarden er 1. januar 2000. Scriptsprogene starter også deres tilfældige tal fra dette ur. Dette er en indstilling og ikke din computers ur, så en optagelse afspilles ens på enhver dag. Den hører til maskinen, så en optagelse skal have samme værdi.",
+		"setting.mousecursor": "Musemarkør",
+		"setting.mousecursor.about": "'show' tegner musemarkøren på billedet, når kassetten bruger musen, sådan som TIC-80's egen afspiller gør: kassettens egen markør, eller TIC-80's pil. 'hide' lader den være ude. Det ændrer intet i maskinen.",
+		"setting.picture": "Billede",
+		"setting.picture.about": "'full' viser hele TIC-80's billede, 256x144: skærmen på 240x136 og kanten omkring den, som kassetter kan tegne på. 'screen' viser kun skærmen. Mouse X og Mouse Y er et sted på det viste billede. Det ændrer intet i maskinen.",
+		"slot.cart": "Kassette",
+		"slot.cart.help": "TIC-80-kassetten: en .tic-fil eller en .png-kassette (et billede med kassetten inde i, sådan som tic80.com tilbyder dem).",
+		"slot.savedata": "Gemte data",
+		"slot.savedata.help": "Det kassetten har gemt (dens pmem-hukommelse, 1 KB) ved starten, til et projekt der begynder fra et gemt spil: en fil, sådan som Emulator > Eksportér gemte data... skriver den. Filen ændres aldrig. Lad feltet være tomt for at starte med intet gemt.",
+		"slot.savedata.name_help": "en gemt fil genkendes på sin endelse, .pmem."
+	}
+}

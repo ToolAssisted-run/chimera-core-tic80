@@ -1,0 +1,20 @@
+{
+	"texts": {
+		"error.language": "The cart is written in %1, which this core does not run.",
+		"error.no_file": "No cart is in the project.",
+		"error.not_cart": "'%1' is not a TIC-80 cart (.tic or .png), or it has no code.",
+		"error.not_read": "The cart '%1' could not be read.",
+		"error.not_started": "TIC-80 did not start.",
+		"setting.initialtime": "Starting Clock",
+		"setting.initialtime.about": "The date and time a cart reads with tstamp() when it starts, in seconds since 1970 (Unix time); it then runs with the machine, at 60 frames a second. The default is the first of January 2000. The script languages also start their random numbers from this clock. This is a setting, and not your computer's clock, so that a movie plays back the same on any day. It is part of the machine, so a movie needs the same value.",
+		"setting.mousecursor": "Mouse Cursor",
+		"setting.mousecursor.about": "'show' draws the mouse cursor on the picture when the cart uses the mouse, as TIC-80's own player does: the cart's own cursor, or TIC-80's arrow. 'hide' leaves it out. It changes nothing in the machine.",
+		"setting.picture": "Picture",
+		"setting.picture.about": "'full' shows TIC-80's whole picture, 256x144: the 240x136 screen and the border around it, which carts can draw on. 'screen' shows the screen alone. Mouse X and Mouse Y are a place on the picture shown. It changes nothing in the machine.",
+		"slot.cart": "Cart",
+		"slot.cart.help": "The TIC-80 cart: a .tic file, or a .png cart (a picture with the cart inside, as tic80.com offers them).",
+		"slot.savedata": "Save data",
+		"slot.savedata.help": "What the cart has saved (its pmem memory, 1 KB) at the start, for a project that begins from a saved game: a file as Emulator > Export Save Data... writes it. The file is never changed. Leave this empty to start with nothing saved.",
+		"slot.savedata.name_help": "a save file is identified by its extension, .pmem."
+	}
+}
