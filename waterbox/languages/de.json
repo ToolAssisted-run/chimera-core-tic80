@@ -8,7 +8,7 @@
 		"setting.initialtime": "Startzeit der Uhr",
 		"setting.initialtime.about": "Das Datum und die Uhrzeit, die ein Cart beim Start mit tstamp() liest, in Sekunden seit 1970 (Unix-Zeit); danach läuft sie mit der Maschine, mit 60 Bildern pro Sekunde. Vorgabe ist der 1. Januar 2000. Die Skriptsprachen beginnen ihre Zufallszahlen ebenfalls mit dieser Uhr. Das ist eine Einstellung und nicht die Uhr Ihres Computers, damit ein Film an jedem Tag gleich abläuft. Es gehört zur Maschine, daher braucht ein Film denselben Wert.",
 		"setting.mousecursor": "Mauszeiger",
-		"setting.mousecursor.about": "'show' zeichnet den Mauszeiger ins Bild, wenn das Cart die Maus nutzt, so wie TIC-80s eigener Player: den eigenen Zeiger des Carts oder den Pfeil von TIC-80. 'hide' lässt ihn weg. Es ändert nichts in der Maschine.",
+		"setting.mousecursor.about": "'show' zeichnet den Mauszeiger ins Bild, wenn das Cart die Maus nutzt, so wie der eigene Player von TIC-80: den eigenen Zeiger des Carts oder den Pfeil von TIC-80. 'hide' lässt ihn weg. Es ändert nichts in der Maschine.",
 		"setting.picture": "Bild",
 		"setting.picture.about": "'full' zeigt das ganze Bild von TIC-80, 256x144: den Bildschirm 240x136 und den Rahmen darum, auf den Carts zeichnen können. 'screen' zeigt nur den Bildschirm. Mausposition X und Y sind eine Stelle im gezeigten Bild. Es ändert nichts in der Maschine.",
 		"slot.cart": "Cart",
