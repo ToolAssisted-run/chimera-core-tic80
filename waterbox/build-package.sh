@@ -35,6 +35,10 @@ ninja -C "$root/build/meson-guest" core.wbx
 # where the code reads its thread pointer, listed in the image: an Intel Mac
 # rewrites those reads as the core loads (miniBox's wbx-tp-rewrite.py)
 python3 "$mb/source/guest/wbx-tp-rewrite.py" "$root/build/meson-guest/core.wbx"
+# An aarch64 guest reads its thread pointer from the machine's slot, not from
+# TPIDR_EL0 (miniBox's MACHINE-SPEC, "aarch64"); the host refuses one that
+# was not rewritten so.
+[ "$(uname -m)" = x86_64 ] || python3 "$mb/source/guest/wbx-tp-rewrite.py" "$root/build/meson-guest/core.wbx"
 sh "$mb/source/guest/check-wbx.sh" "$root/build/meson-guest/core.wbx"
 
 staging="$root/build/package-staging"
@@ -101,7 +105,7 @@ json.dump({
                "origin": git("config", "--get", "remote.origin.url", default=""),
                "dirty": "-dirty" in "$core_version"},
     "toolchain": {"compiler": "gcc $gccver", "binutils": "$binutils_version",
-                  "target": "x86_64-linux-musl", "musl": "$musl_version"},
+                  "target": "$(uname -m)-linux-musl", "musl": "$musl_version"},
     "guestKit": {"name": "miniBox", "commit": "$guest_kit"},
     "upstream": {"name": "TIC-80", "pin": "$tic80_pin"},
     "builtOn": "$os_id",

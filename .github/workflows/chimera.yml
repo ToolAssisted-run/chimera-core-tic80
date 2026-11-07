@@ -40,9 +40,19 @@ env:
 jobs:
 
   gate:
-    name: build and test (native against sandbox, the package, Chimera's package checks)
-    runs-on: ubuntu-latest
+    # Once per CPU, each on a runner of that CPU: a package is machine code for
+    # one CPU, and miniBox's guest toolchain builds for the CPU it runs on.
+    name: build and test for ${{ matrix.arch }} (native against sandbox, the package, Chimera's package checks)
+    runs-on: ${{ matrix.runner }}
     timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: x86_64
+            runner: ubuntu-24.04
+          - arch: aarch64
+            runner: ubuntu-24.04-arm
     steps:
       - uses: actions/checkout@v6
         with:
@@ -67,7 +77,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/qt
-          key: qt-6.12.0-linux-aqt-3.3.0
+          key: qt-6.12.0-linux-${{ matrix.arch }}-aqt-3.3.0
 
       - name: Build Chimera (the engine, chimera-run and the window)
         run: chimera-checkout/tools/ci-chimera.sh "$HOME/qt"
@@ -78,7 +88,7 @@ jobs:
           path: |
             chimera-checkout/extern/chimera-common-minibox/build/meson-linux
             chimera-checkout/extern/chimera-common-minibox/build/meson-cpp
-          key: guest-cpp-${{ runner.os }}-${{ hashFiles('chimera-checkout/extern/chimera-common-minibox/.git') }}-${{ hashFiles('chimera-checkout/extern/chimera-common-minibox/meson.build') }}
+          key: guest-cpp-${{ runner.os }}-${{ matrix.arch }}-${{ hashFiles('chimera-checkout/extern/chimera-common-minibox/.git') }}-${{ hashFiles('chimera-checkout/extern/chimera-common-minibox/meson.build') }}
 
       - name: Build miniBox (the sandbox, and its C++ toolchain)
         run: |
@@ -143,7 +153,7 @@ jobs:
       - name: Upload the package
         uses: actions/upload-artifact@v7
         with:
-          name: tic80-${{ github.sha }}
+          name: tic80-${{ github.sha }}-${{ matrix.arch }}
           path: chimera-checkout/build/Cores/tic80.chimeraCore
           if-no-files-found: error
 
@@ -151,7 +161,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v7
         with:
-          name: build-logs
+          name: build-logs-${{ matrix.arch }}
           path: |
             gate.out
             window.out
@@ -171,3 +181,4 @@ jobs:
       core-id: tic80
       artifact: tic80-${{ github.sha }}
       package: tic80.chimeraCore
+      arches: x86_64 aarch64
